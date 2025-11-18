@@ -257,6 +257,7 @@
         .signature-area canvas {
             width: 100%;
             height: 100%;
+            touch-action: none;
         }
 
         .btn {
@@ -1082,14 +1083,30 @@
         function initializeSignaturePads() {
             const parentCanvas = document.getElementById('parentCanvas');
             const youthCanvas = document.getElementById('youthCanvas');
-            
-            parentCanvas.width = parentCanvas.parentElement.offsetWidth;
+
+            parentCanvas.width = parentCanvas.parentElement.clientWidth;
             parentCanvas.height = 220;
-            youthCanvas.width = youthCanvas.parentElement.offsetWidth;
+            youthCanvas.width = youthCanvas.parentElement.clientWidth;
             youthCanvas.height = 220;
-            
+
             parentSignaturePad = new SignaturePad(parentCanvas);
             youthSignaturePad = new SignaturePad(youthCanvas);
+
+            window.addEventListener('resize', resizeCanvases);
+        }
+
+        function resizeCanvases() {
+            const parentCanvas = document.getElementById('parentCanvas');
+            const youthCanvas = document.getElementById('youthCanvas');
+
+            const parentData = parentSignaturePad.toData();
+            const youthData = youthSignaturePad.toData();
+
+            parentCanvas.width = parentCanvas.parentElement.clientWidth;
+            youthCanvas.width = youthCanvas.parentElement.clientWidth;
+
+            parentSignaturePad.fromData(parentData);
+            youthSignaturePad.fromData(youthData);
         }
 
         function clearSignature(type) {
