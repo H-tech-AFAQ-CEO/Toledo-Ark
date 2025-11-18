@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: white;
             min-height: 100vh;
             padding: 30px 15px;
         }
@@ -26,28 +26,17 @@
             margin: 0 auto;
             background: white;
             border-radius: 24px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
             overflow: hidden;
         }
 
         .header-section {
-            background: linear-gradient(135deg, #2c5f2d 0%, #4CAF50 100%);
+            background: #4CAF50;
             padding: 50px 40px;
             text-align: center;
             color: white;
             position: relative;
         }
 
-        .header-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
-            opacity: 0.3;
-        }
 
         .logo-title {
             font-size: 3rem;
@@ -92,7 +81,7 @@
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #4CAF50, #2c5f2d);
+            background: #4CAF50;
             border-radius: 20px;
             width: 9%;
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -184,7 +173,6 @@
         .input-field:focus {
             outline: none;
             border-color: #4CAF50;
-            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
         }
 
         textarea.input-field {
@@ -213,11 +201,10 @@
         .option-box:hover {
             background: #e8f5e9;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .option-box.selected {
-            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(69, 160, 73, 0.15));
+            background: #e8f5e9;
             border-color: #4CAF50;
         }
 
@@ -230,7 +217,7 @@
         }
 
         .info-panel {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            background: #e3f2fd;
             border-left: 5px solid #2196F3;
             padding: 20px;
             border-radius: 10px;
@@ -273,14 +260,12 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #4CAF50, #2c5f2d);
+            background: #4CAF50;
             color: white;
-            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(76, 175, 80, 0.4);
         }
 
         .btn-primary:disabled {
@@ -335,14 +320,14 @@
         }
 
         .success-screen {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            background: #d4edda;
             color: #155724;
             border-radius: 20px;
             border: 2px solid #c3e6cb;
         }
 
         .error-screen {
-            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            background: #f8d7da;
             color: #721c24;
             border-radius: 20px;
             border: 2px solid #f5c6cb;
@@ -366,7 +351,7 @@
         }
 
         .reference-box {
-            background: rgba(255, 255, 255, 0.6);
+            background: white;
             padding: 15px;
             border-radius: 10px;
             margin: 20px 0;
@@ -1027,7 +1012,7 @@
                         </div>
                     </div>
 
-                    <div class="info-panel" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 5px solid #28a745; margin-top: 30px;">
+                    <div class="info-panel" style="background: #d4edda; border-left: 5px solid #28a745; margin-top: 30px;">
                         <p style="text-align: center; font-size: 1.1rem;"><strong>✅ You're almost done!</strong><br>Please review all information before submitting.</p>
                     </div>
                 </div>
