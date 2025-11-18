@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toledo Ark - Digital Intake Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/4.1.7/signature_pad.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #2c5f2d 0%, #4CAF50 100%);
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            opacity: 0.3;
+        }
+
+        .logo-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle-text {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-section {
+            background: #f8f9fa;
+            padding: 25px 40px;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .step-text {
+            font-weight: 700;
+            color: #495057;
+            font-size: 1.1rem;
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #2c5f2d);
+            border-radius: 20px;
+            width: 9%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-name {
+            font-weight: 600;
+            color: #2c5f2d;
+            font-size: 1rem;
+        }
+
+        .content-wrapper {
+            padding: 50px 40px;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        .content-wrapper::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .content-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .content-wrapper::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 5px;
+        }
+
+        .form-section-block {
+            display: none;
+        }
+
+        .form-section-block.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #4CAF50;
+            font-weight: 700;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .required-field::after {
+            content: ' *';
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+        }
+
+        textarea.input-field {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .option-box {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-box:hover {
+            background: #e8f5e9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .option-box.selected {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(69, 160, 73, 0.15));
+            border-color: #4CAF50;
+        }
+
+        .option-box input {
+            margin-right: 12px;
+            width: 22px;
+            height: 22px;
+            accent-color: #4CAF50;
+            cursor: pointer;
+        }
+
+        .info-panel {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            line-height: 1.7;
+        }
+
+        .info-panel h4 {
+            color: #1976D2;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .signature-area {
+            border: 3px dashed #ccc;
+            border-radius: 12px;
+            width: 100%;
+            height: 220px;
+            background: #fafafa;
+            margin-top: 12px;
+            cursor: crosshair;
+        }
+
+        .signature-area canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #2c5f2d);
+            color: white;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .btn-outline:hover {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .navigation-footer {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+            animation: bounceIn 0.6s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-screen.show {
+            display: block;
+        }
+
+        .success-screen {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border-radius: 20px;
+            border: 2px solid #c3e6cb;
+        }
+
+        .error-screen {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border-radius: 20px;
+            border: 2px solid #f5c6cb;
+        }
+
+        .result-icon {
+            font-size: 5rem;
+            margin-bottom: 25px;
+        }
+
+        .result-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .result-message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .reference-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        .error-text {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        .input-field.error {
+            border-color: #dc3545;
+            animation: shake 0.3s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table thead tr {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            .logo-title { font-size: 2rem; }
+            .subtitle-text { font-size: 1rem; }
+            .content-wrapper { padding: 30px 20px; max-height: 60vh; }
+            .section-header { font-size: 1.6rem; }
+            .navigation-footer { padding: 20px; }
+            .input-row, .options-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container" id="mainContainer">
+        <div class="header-section">
+            <div class="logo-title">🌱 TOLEDO ARK</div>
+            <div class="subtitle-text">Youth Behavioral Health Services - Day Treatment Program</div>
+        </div>
+
+        <div class="progress-section">
+            <div class="step-text">Step <span id="stepNumber">1</span> of 11</div>
+            <div class="progress-container">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <div class="section-name" id="sectionName">Client Information</div>
+        </div>
+
+        <form id="mainForm" novalidate>
+            <div class="content-wrapper">
+                <div class="form-section-block active" id="section1">
+                    <div class="section-header">I. Client Information & Demographics</div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Youth Client Name</label>
+                            <input type="text" class="input-field" name="youthName" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Preferred Name/Nickname</label>
+                            <input type="text" class="input-field" name="preferredName">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Date of Birth</label>
+                            <input type="date" class="input-field" name="dob" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Age</label>
+                            <input type="number" class="input-field" name="age" min="6" max="17" required>
+                            <div class="error-text">Age must be between 6-17</div>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Social Security Number</label>
+                            <input type="text" class="input-field" name="ssn" placeholder="XXX-XX-XXXX" maxlength="11" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Gender Identity</label>
+                            <select class="input-field" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Non-Binary">Non-Binary</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Pronouns</label>
+                            <input type="text" class="input-field" name="pronouns" placeholder="e.g., he/him, she/her, they/them">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Primary Phone</label>
+                            <input type="tel" class="input-field" name="phone" placeholder="(XXX) XXX-XXXX" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label required-field">Home Address</label>
+                        <input type="text" class="input-field" name="address" required>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">City</label>
+                            <input type="text" class="input-field" name="city" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">State</label>
+                            <input type="text" class="input-field" name="state" value="OH" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">ZIP Code</label>
+                            <input type="text" class="input-field" name="zip" maxlength="5" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Email</label>
+                            <input type="email" class="input-field" name="email">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">School Name</label>
+                            <input type="text" class="input-field" name="school" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Grade</label>
+                            <input type="text" class="input-field" name="grade" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Referral Source</label>
+                        <input type="text" class="input-field" name="referralSource">
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section2">
+                    <div class="section-header">II. Parent/Guardian Information</div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Primary Guardian Name</label>
+                            <input type="text" class="input-field" name="guardianName" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Relationship to Youth</label>
+                            <input type="text" class="input-field" name="relationship" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Employer</label>
+                            <input type="text" class="input-field" name="employer">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Work Phone</label>
+                            <input type="tel" class="input-field" name="workPhone">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Cell Phone</label>
+                            <input type="tel" class="input-field" name="cellPhone" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Email</label>
+                        <input type="email" class="input-field" name="guardianEmail">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Mailing Address (if different)</label>
+                        <input type="text" class="input-field" name="mailingAddress">
+                    </div>
+
+                    <h4 style="margin-top: 30px; color: #2c3e50; font-size: 1.3rem;">Secondary Guardian (Optional)</h4>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Secondary Guardian Name</label>
+                            <input type="text" class="input-field" name="secondaryGuardianName">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Relationship</label>
+                            <input type="text" class="input-field" name="secondaryRelationship">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Cell Phone</label>
+                            <input type="tel" class="input-field" name="secondaryCellPhone">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Email</label>
+                            <input type="email" class="input-field" name="secondaryEmail">
+                        </div>
+                    </div>
+
+                    <div class="input-group" style="margin-top: 30px;">
+                        <label class="input-label required-field">Legal Custody/Guardianship</label>
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="radio" name="custody" value="Joint" id="custody1" required>
+                                <label for="custody1">Joint</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="custody" value="Mother Only" id="custody2">
+                                <label for="custody2">Mother Only</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="custody" value="Father Only" id="custody3">
+                                <label for="custody3">Father Only</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="custody" value="Legal Guardian" id="custody4">
+                                <label for="custody4">Legal Guardian</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="custody" value="Other" id="custody5">
+                                <label for="custody5">Other</label>
+                            </div>
+                        </div>
+                        <div class="error-text">Please select custody arrangement</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section3">
+                    <div class="section-header">III. Screening Form – Presenting Concerns</div>
+                    <div class="input-group">
+                        <label class="input-label required-field">Reason for seeking services</label>
+                        <textarea class="input-field" name="reasonForServices" rows="4" required></textarea>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">When did these concerns begin?</label>
+                        <input type="text" class="input-field" name="concernsBegin">
+                    </div>
+
+                    <div class="input-group" style="margin-top: 25px;">
+                        <label class="input-label">Areas affected (check all that apply)</label>
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="School" id="area1">
+                                <label for="area1">School</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Home" id="area2">
+                                <label for="area2">Home</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Peers" id="area3">
+                                <label for="area3">Peers</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Mood" id="area4">
+                                <label for="area4">Mood</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Behavior" id="area5">
+                                <label for="area5">Behavior</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Sleep" id="area6">
+                                <label for="area6">Sleep</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Appetite" id="area7">
+                                <label for="area7">Appetite</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Safety" id="area8">
+                                <label for="area8">Safety</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group" style="margin-top: 25px;">
+                        <label class="input-label">Current supports or services</label>
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="checkbox" name="currentSupports" value="Individual Therapy" id="support1">
+                                <label for="support1">Individual Therapy</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="currentSupports" value="Family Therapy" id="support2">
+                                <label for="support2">Family Therapy</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="currentSupports" value="Medication" id="support3">
+                                <label for="support3">Medication</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="currentSupports" value="IEP/504" id="support4">
+                                <label for="support4">IEP/504</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="currentSupports" value="None" id="support5">
+                                <label for="support5">None</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Past/known diagnoses</label>
+                        <textarea class="input-field" name="pastDiagnoses" rows="3"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Current medications</label>
+                        <textarea class="input-field" name="currentMedications" rows="3"></textarea>
+                    </div>
+
+                    <div class="info-panel" style="margin-top: 30px;">
+                        <h4>⚠️ Safety Concerns</h4>
+                        <p>Has your child ever expressed thoughts of self-harm or harm to others?</p>
+                    </div>
+                    <div class="input-group">
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="radio" name="safetyConcerns" value="Yes" id="safety1" required>
+                                <label for="safety1">Yes</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="safetyConcerns" value="No" id="safety2">
+                                <label for="safety2">No</label>
+                            </div>
+                        </div>
+                        <div class="error-text">Please select an option</div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">If yes, please explain</label>
+                        <textarea class="input-field" name="safetyExplanation" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section4">
+                    <div class="section-header">IV. Consent for Treatment Agreement</div>
+                    <div class="info-panel">
+                        <p>I, the undersigned Parent/Guardian, consent for my child to participate in the Day Treatment Program provided by Toledo Ark, which operates under certification and standards of the Ohio Department of Behavioral Health (DBH).</p>
+                        <br>
+                        <p>I give consent to the agency to provide treatment for my child which may include but is not limited to various therapies, transportation, psychosocial recreational activities, and/or medical intervention.</p>
+                        <br>
+                        <p><strong>I understand that:</strong></p>
+                        <ol>
+                            <li>Day treatment is a structured, goal-oriented behavioral health program.</li>
+                            <li>Services may include individual, group, and family therapy; skills development; psycho-education; and behavior management.</li>
+                            <li>Services are voluntary and may be discontinued with written notice.</li>
+                            <li>Confidentiality of records will be maintained in accordance with Ohio Revised Code 5122.31, HIPAA, and 42 CFR Part 2.</li>
+                            <li>A treatment plan will be developed collaboratively and reviewed at least every 90 days.</li>
+                            <li>I have received a copy of the agency's Client Rights and Grievance Policy.</li>
+                        </ol>
+                    </div>
+                    <div class="input-group">
+                        <div class="option-box" style="margin: 20px 0;">
+                            <input type="checkbox" name="treatmentConsent" value="agreed" id="treatmentConsent" required>
+                            <label for="treatmentConsent"><strong>I agree to the treatment consent terms above</strong></label>
+                        </div>
+                        <div class="error-text">You must agree to continue</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section5">
+                    <div class="section-header">V. Consent for Transportation</div>
+                    <div class="info-panel">
+                        <p>I authorize Toledo Ark to transport my child for purposes related to the Day Treatment Program, including travel to and from school, approved community activities, or therapeutic outings.</p>
+                        <br>
+                        <p><strong>I understand that:</strong></p>
+                        <ul>
+                            <li>Transportation will comply with all agency and Ohio DBH safety policies</li>
+                            <li>Vehicles are insured, and drivers are trained in safety and emergency procedures</li>
+                            <li>I may revoke this consent in writing at any time</li>
+                        </ul>
+                    </div>
+                    <div class="input-group">
+                        <div class="option-box" style="margin: 20px 0;">
+                            <input type="checkbox" name="transportConsent" value="agreed" id="transportConsent" required>
+                            <label for="transportConsent"><strong>I consent to transportation services</strong></label>
+                        </div>
+                        <div class="error-text">You must agree to continue</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section6">
+                    <div class="section-header">VI. Consent for Telehealth Services</div>
+                    <div class="info-panel">
+                        <h4>Telehealth Services Agreement</h4>
+                        <p><strong>I understand that:</strong></p>
+                        <ol>
+                            <li>Toledo Ark providers offer telehealth appointments for services</li>
+                            <li>Video conferencing will not be the same as direct in-person visits</li>
+                            <li>Telehealth has potential benefits including easier access and convenience</li>
+                            <li>There are potential risks including interruptions, unauthorized access, and technical difficulties</li>
+                            <li>Either party can discontinue if connections are not adequate</li>
+                        </ol>
+                        <br>
+                        <p><strong>Potential Benefits:</strong></p>
+                        <ul>
+                            <li>Easier access and reduced travel barriers</li>
+                            <li>Continuity of care when in-person services are unavailable</li>
+                            <li>Inclusion of caregivers or schools in sessions when appropriate</li>
+                        </ul>
+                        <br>
+                        <p><strong>Potential Risks:</strong></p>
+                        <ul>
+                            <li>Internet or equipment failures</li>
+                            <li>Limited ability to observe nonverbal cues</li>
+                            <li>Possible confidentiality risks related to technology</li>
+                        </ul>
+                        <br>
+                        <p><strong>My Responsibilities:</strong></p>
+                        <ul>
+                            <li>Ensure a private, safe location for sessions</li>
+                            <li>Avoid recording sessions unless mutually agreed upon</li>
+                            <li>Report any safety or privacy concerns immediately</li>
+                        </ul>
+                    </div>
+                    <div class="input-group">
+                        <div class="option-box" style="margin: 20px 0;">
+                            <input type="checkbox" name="telehealthConsent" value="agreed" id="telehealthConsent" required>
+                            <label for="telehealthConsent"><strong>I consent to telehealth services</strong></label>
+                        </div>
+                        <div class="error-text">You must agree to continue</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section7">
+                    <div class="section-header">VII. Fees for Service</div>
+                    <div class="info-panel">
+                        <h4>Service Rates</h4>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Service Type</th>
+                                    <th style="text-align: right;">Rate per Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Intake / Assessment</td>
+                                    <td style="text-align: right;">$125.28</td>
+                                </tr>
+                                <tr>
+                                    <td>Individual Therapy</td>
+                                    <td style="text-align: right;">$115.35</td>
+                                </tr>
+                                <tr>
+                                    <td>Day Treatment Group Therapy</td>
+                                    <td style="text-align: right;">$205.95 (per day)</td>
+                                </tr>
+                                <tr>
+                                    <td>CPST Group Therapy</td>
+                                    <td style="text-align: right;">$10.14 (per 15 min)</td>
+                                </tr>
+                                <tr>
+                                    <td>CPST Individual</td>
+                                    <td style="text-align: right;">$22.03 (per 15 min)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><em>All services will be billed to insurance, and we offer sliding scale for self-pay clients.</em></p>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label required-field">Payment Method</label>
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="radio" name="paymentMethod" value="Insurance" id="payment1" required>
+                                <label for="payment1">Insurance</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="paymentMethod" value="Self-Pay" id="payment2">
+                                <label for="payment2">Self-Pay</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="paymentMethod" value="Sliding Scale" id="payment3">
+                                <label for="payment3">Sliding Scale</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="paymentMethod" value="Other" id="payment4">
+                                <label for="payment4">Other</label>
+                            </div>
+                        </div>
+                        <div class="error-text">Please select a payment method</div>
+                    </div>
+                    <div class="input-group">
+                        <div class="option-box" style="margin: 20px 0;">
+                            <input type="checkbox" name="feeAcknowledgment" value="agreed" id="feeAcknowledgment" required>
+                            <label for="feeAcknowledgment"><strong>I acknowledge the fee schedule</strong></label>
+                        </div>
+                        <div class="error-text">You must acknowledge to continue</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section8">
+                    <div class="section-header">VIII. Emergency & Crisis Policy</div>
+                    <div class="info-panel">
+                        <h4>⚠️ Important Safety Information</h4>
+                        <p>The safety of every youth in our program is our top priority.</p>
+                        <br>
+                        <p><strong>If you are experiencing a mental health emergency, please use:</strong></p>
+                        <ul>
+                            <li><strong>Call 911</strong> if there is immediate danger to self or others</li>
+                            <li><strong>Call or text 988</strong> for the Suicide and Crisis Lifeline (available 24/7 statewide)</li>
+                            <li><strong>Local Crisis Line:</strong> Lucas County Crisis CARE Line, available 24/7 at <strong>419-904-CARE (2273)</strong></li>
+                            <li><strong>ProMedica Russell J. Ebeid Children's Hospital Psychiatric Unit</strong><br>2142 N. Cove Blvd., Toledo, Ohio 43606</li>
+                        </ul>
+                        <br>
+                        <p><em>Our program is not a 24-hour facility. Calls or messages received after hours will be addressed the next business day.</em></p>
+                    </div>
+                    <div class="input-group">
+                        <div class="option-box" style="margin: 20px 0;">
+                            <input type="checkbox" name="emergencyAcknowledgment" value="agreed" id="emergencyAcknowledgment" required>
+                            <label for="emergencyAcknowledgment"><strong>I understand the emergency procedures</strong></label>
+                        </div>
+                        <div class="error-text">You must acknowledge to continue</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section9">
+                    <div class="section-header">IX. Your Rights as our Client</div>
+                    <div class="info-panel">
+                        <h4>CLIENT RIGHTS</h4>
+                        <p>Toledo Ark implements policies and procedures to safeguard your rights including:</p>
+                        <ul>
+                            <li>Freedom from abuse, financial or other exploitation, retaliation, humiliation and neglect</li>
+                            <li>Right to access information pertinent to your care and your own records</li>
+                            <li>Informed consent or refusal regarding service delivery</li>
+                            <li>Access to self-help and advocacy support services</li>
+                            <li>Right to be treated with consideration and respect for personal dignity, autonomy, and privacy</li>
+                            <li>Right to receive services in the least restrictive, feasible environment</li>
+                            <li>Right to participate in development and review of your treatment plan</li>
+                            <li>Right to confidentiality within legal limitations</li>
+                            <li>Right to file a grievance without reprisal</li>
+                        </ul>
+                        <br>
+                        <h4>GRIEVANCE PROCEDURE</h4>
+                        <p>If you have concerns or complaints:</p>
+                        <ol>
+                            <li>First, speak with your counselor or case manager</li>
+                            <li>If unresolved, contact the Client Rights Officer</li>
+                            <li>You may file a written grievance at any time</li>
+                            <li>All grievances will be resolved within 20 calendar days</li>
+                            <li>You may also contact outside agencies including Ohio DBH and Ohio Legal Rights Service</li>
+                        </ol>
+                        <br>
+                        <p><strong>Client Rights Officer:</strong> Kelly Morales<br>Phone: 419-283-3018<br>Address: 735 South St. Clair, Toledo, Ohio 43609</p>
+                    </div>
+                    <div class="input-group">
+                        <div class="option-box" style="margin: 20px 0;">
+                            <input type="checkbox" name="rightsAcknowledgment" value="agreed" id="rightsAcknowledgment" required>
+                            <label for="rightsAcknowledgment"><strong>I acknowledge receipt of Client Rights and Grievance Policy information</strong></label>
+                        </div>
+                        <div class="error-text">You must acknowledge to continue</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section10">
+                    <div class="section-header">X. Privacy Practices & Confidentiality</div>
+                    <div class="info-panel">
+                        <h4>NOTICE OF PRIVACY PRACTICES</h4>
+                        <p><strong>Your Rights:</strong></p>
+                        <ul>
+                            <li>Right to receive a paper or electronic copy of this Notice</li>
+                            <li>Right to file a complaint if you believe your privacy rights were violated</li>
+                            <li>Right to request restrictions on uses and disclosures</li>
+                            <li>Right to receive confidential communications</li>
+                            <li>Right to inspect, copy, and amend your PHI</li>
+                        </ul>
+                        <br>
+                        <p><strong>How We Use Your Information:</strong></p>
+                        <ul>
+                            <li><strong>For Treatment:</strong> To provide behavioral health and medical services</li>
+                            <li><strong>For Payment:</strong> To bill and collect payment for services</li>
+                            <li><strong>For Healthcare Operations:</strong> To improve quality of care and services</li>
+                        </ul>
+                        <br>
+                        <h4>42 CFR Part 2 - Confidentiality of Alcohol & Drug Abuse Client Records</h4>
+                        <p>Federal laws protect information about alcohol and drug treatment. We cannot disclose that you receive services or any identifying information unless:</p>
+                        <ul>
+                            <li>You consent in writing</li>
+                            <li>The disclosure is allowed by court order</li>
+                            <li>For medical emergencies, research, or audits by qualified personnel</li>
+                        </ul>
+                        <br>
+                        <p><strong>Privacy Officer:</strong> Emily Boston<br>Phone: 419-708-0841</p>
+                    </div>
+                    <div class="input-group">
+                        <div class="option-box" style="margin: 20px 0;">
+                            <input type="checkbox" name="privacyAcknowledgment" value="agreed" id="privacyAcknowledgment" required>
+                            <label for="privacyAcknowledgment"><strong>I acknowledge receipt of Privacy Practices information</strong></label>
+                        </div>
+                        <div class="error-text">You must acknowledge to continue</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section11">
+                    <div class="section-header">XI. Digital Signatures & Final Acknowledgment</div>
+                    <div class="info-panel">
+                        <p>By signing below, I acknowledge I understand all sections of this intake packet, including consent forms, telehealth and transportation policies, fees, and emergency protocols. I have had the opportunity to ask questions and receive clarification regarding my child's participation in the Day Treatment Program under the Ohio Department of Behavioral Health (DBH) standards.</p>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Parent/Guardian Signature</label>
+                            <div class="signature-area" id="parentSignatureArea">
+                                <canvas id="parentCanvas"></canvas>
+                            </div>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('parent')" style="margin-top: 10px;">Clear Signature</button>
+                            <div class="error-text">Signature is required</div>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Youth Signature (if applicable)</label>
+                            <div class="signature-area" id="youthSignatureArea">
+                                <canvas id="youthCanvas"></canvas>
+                            </div>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('youth')" style="margin-top: 10px;">Clear Signature</button>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Date</label>
+                            <input type="date" class="input-field" name="signatureDate" required>
+                            <div class="error-text">Date is required</div>
+                        </div>
+                    </div>
+
+                    <div class="info-panel" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 5px solid #28a745; margin-top: 30px;">
+                        <p style="text-align: center; font-size: 1.1rem;"><strong>✅ You're almost done!</strong><br>Please review all information before submitting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-footer">
+                <button type="button" id="prevBtn" class="btn btn-secondary" style="visibility: hidden;">Previous</button>
+                <button type="button" id="nextBtn" class="btn btn-primary">Next</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">Submit Form</button>
+            </div>
+        </form>
+
+        <div class="result-screen success-screen" id="successScreen">
+            <span class="result-icon">✅</span>
+            <h2 class="result-title">Form Submitted Successfully!</h2>
+            <p class="result-message">Thank you for completing the Toledo Ark intake form. Our team will review your submission and contact you within 2-3 business days.</p>
+            <div class="reference-box">
+                <strong>Reference ID:</strong> <span id="referenceId"></span>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="downloadPDF()" style="margin-top: 20px;">Download PDF Copy</button>
+            <button type="button" class="btn btn-outline" onclick="location.reload()" style="margin-top: 10px;">Start New Form</button>
+        </div>
+
+        <div class="result-screen error-screen" id="errorScreen">
+            <span class="result-icon">❌</span>
+            <h2 class="result-title">Submission Error</h2>
+            <p class="result-message">We're sorry, but there was an error submitting your form. Please check your information and try again.</p>
+            <div class="reference-box">
+                <strong>Error:</strong> <span id="errorMessage">Unknown error occurred</span>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="hideError()" style="margin-top: 20px;">Return to Form</button>
+            <button type="button" class="btn btn-secondary" onclick="location.reload()" style="margin-top: 10px;">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 11;
+        let parentSignaturePad, youthSignaturePad;
+        let formData = {};
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeSignaturePads();
+            setupEventListeners();
+            updateProgress();
+            setupPhoneFormatting();
+            setupSSNFormatting();
+            setupCheckboxAnimations();
+            const today = new Date().toISOString().split('T')[0];
+            document.querySelector('input[name="signatureDate"]').value = today;
+        });
+
+        function initializeSignaturePads() {
+            const parentCanvas = document.getElementById('parentCanvas');
+            const youthCanvas = document.getElementById('youthCanvas');
+            
+            parentCanvas.width = parentCanvas.parentElement.offsetWidth;
+            parentCanvas.height = 220;
+            youthCanvas.width = youthCanvas.parentElement.offsetWidth;
+            youthCanvas.height = 220;
+            
+            parentSignaturePad = new SignaturePad(parentCanvas);
+            youthSignaturePad = new SignaturePad(youthCanvas);
+        }
+
+        function clearSignature(type) {
+            if (type === 'parent') {
+                parentSignaturePad.clear();
+            } else {
+                youthSignaturePad.clear();
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('nextBtn').addEventListener('click', nextSection);
+            document.getElementById('prevBtn').addEventListener('click', prevSection);
+            document.getElementById('mainForm').addEventListener('submit', submitForm);
+        }
+
+        function setupPhoneFormatting() {
+            const phoneInputs = document.querySelectorAll('input[type="tel"]');
+            phoneInputs.forEach(input => {
+                input.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 6) {
+                        value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+                    } else if (value.length >= 3) {
+                        value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+                    }
+                    e.target.value = value;
+                });
+            });
+        }
+
+        function setupSSNFormatting() {
+            const ssnInput = document.querySelector('input[name="ssn"]');
+            if (ssnInput) {
+                ssnInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 5) {
+                        value = `${value.slice(0, 3)}-${value.slice(3, 5)}-${value.slice(5, 9)}`;
+                    } else if (value.length >= 3) {
+                        value = `${value.slice(0, 3)}-${value.slice(3)}`;
+                    }
+                    e.target.value = value;
+                });
+            }
+        }
+
+        function setupCheckboxAnimations() {
+            const checkboxItems = document.querySelectorAll('.option-box');
+            checkboxItems.forEach(item => {
+                const input = item.querySelector('input');
+                input.addEventListener('change', function () {
+                    if (this.checked) {
+                        item.classList.add('selected');
+                        if (this.type === 'radio') {
+                            const siblings = document.querySelectorAll(`input[name="${this.name}"]`);
+                            siblings.forEach(sibling => {
+                                if (sibling !== this) {
+                                    sibling.closest('.option-box').classList.remove('selected');
+                                }
+                            });
+                        }
+                    } else {
+                        item.classList.remove('selected');
+                    }
+                });
+            });
+        }
+
+        function nextSection() {
+            if (validateCurrentSection()) {
+                if (currentSection < totalSections) {
+                    document.getElementById(`section${currentSection}`).classList.remove('active');
+                    currentSection++;
+                    document.getElementById(`section${currentSection}`).classList.add('active');
+                    updateProgress();
+                    updateNavigation();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 1) {
+                document.getElementById(`section${currentSection}`).classList.remove('active');
+                currentSection--;
+                document.getElementById(`section${currentSection}`).classList.add('active');
+                updateProgress();
+                updateNavigation();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('stepNumber').textContent = currentSection;
+            
+            const titles = [
+                'Client Information', 
+                'Parent/Guardian Info', 
+                'Screening Form', 
+                'Treatment Consent', 
+                'Transportation', 
+                'Telehealth', 
+                'Fees', 
+                'Emergency Policy', 
+                'Client Rights', 
+                'Privacy', 
+                'Signatures'
+            ];
+            document.getElementById('sectionName').textContent = titles[currentSection - 1];
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            prevBtn.style.visibility = currentSection > 1 ? 'visible' : 'hidden';
+            
+            if (currentSection === totalSections) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        function validateCurrentSection() {
+            const section = document.getElementById(`section${currentSection}`);
+            const requiredInputs = section.querySelectorAll('input[required], select[required], textarea[required]');
+            let isValid = true;
+            
+            requiredInputs.forEach(input => {
+                const errorMsg = input.closest('.input-group').querySelector('.error-text');
+                
+                if (input.type === 'checkbox') {
+                    if (!input.checked) {
+                        input.classList.add('error');
+                        if (errorMsg) errorMsg.classList.add('show');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('error');
+                        if (errorMsg) errorMsg.classList.remove('show');
+                    }
+                } else if (input.type === 'radio') {
+                    const radioGroup = section.querySelectorAll(`input[name="${input.name}"]`);
+                    const checked = Array.from(radioGroup).some(r => r.checked);
+                    if (!checked && errorMsg) {
+                        errorMsg.classList.add('show');
+                        isValid = false;
+                    } else if (checked && errorMsg) {
+                        errorMsg.classList.remove('show');
+                    }
+                } else if (!input.value.trim()) {
+                    input.classList.add('error');
+                    if (errorMsg) errorMsg.classList.add('show');
+                    isValid = false;
+                } else {
+                    input.classList.remove('error');
+                    if (errorMsg) errorMsg.classList.remove('show');
+                }
+            });
+            
+            if (currentSection === 11) {
+                if (parentSignaturePad.isEmpty()) {
+                    const errorMsg = document.querySelector('#parentSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.add('show');
+                    isValid = false;
+                }
+            }
+            
+            return isValid;
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            
+            if (!validateCurrentSection()) {
+                showError('Please complete all required fields before submitting.');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                collectFormData();
+                const referenceId = 'ARK-' + Date.now();
+                document.getElementById('referenceId').textContent = referenceId;
+                
+                setTimeout(() => {
+                    document.getElementById('mainContainer').querySelector('form').style.display = 'none';
+                    document.getElementById('successScreen').classList.add('show');
+                }, 500);
+                
+            } catch (error) {
+                showError('An error occurred while processing your form: ' + error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Form';
+            }
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('mainContainer').querySelector('form').style.display = 'none';
+            document.getElementById('errorScreen').classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('errorScreen').classList.remove('show');
+            document.getElementById('mainContainer').querySelector('form').style.display = 'block';
+        }
+
+        function collectFormData() {
+            const form = document.getElementById('mainForm');
+            const data = new FormData(form);
+            formData = {};
+            
+            for (let [key, value] of data.entries()) {
+                if (formData[key]) {
+                    if (Array.isArray(formData[key])) {
+                        formData[key].push(value);
+                    } else {
+                        formData[key] = [formData[key], value];
+                    }
+                } else {
+                    formData[key] = value;
+                }
+            }
+            
+            formData.parentSignature = parentSignaturePad.toDataURL();
+            formData.youthSignature = youthSignaturePad.toDataURL();
+            formData.submittedAt = new Date().toISOString();
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(20);
+            doc.setTextColor(76, 175, 80);
+            doc.text('Toledo Ark - Intake Form', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Reference ID: ${document.getElementById('referenceId').textContent}`, 105, 30, { align: 'center' });
+            doc.text(`Submission Date: ${new Date().toLocaleDateString()}`, 105, 40, { align: 'center' });
+            
+            let yPos = 55;
+            
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.text('I. Client Information', 20, yPos);
+            yPos += 10;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            
+            const clientInfo = [
+                ['Youth Name:', formData.youthName || 'N/A'],
+                ['Preferred Name:', formData.preferredName || 'N/A'],
+                ['Date of Birth:', formData.dob || 'N/A'],
+                ['Age:', formData.age || 'N/A'],
+                ['Gender:', formData.gender || 'N/A'],
+                ['Phone:', formData.phone || 'N/A'],
+                ['Address:', formData.address || 'N/A'],
+                ['City, State, ZIP:', `${formData.city || 'N/A'}, ${formData.state || 'N/A'} ${formData.zip || 'N/A'}`],
+                ['School:', formData.school || 'N/A'],
+                ['Grade:', formData.grade || 'N/A']
+            ];
+            
+            doc.autoTable({
+                startY: yPos,
+                body: clientInfo,
+                theme: 'grid',
+                styles: { fontSize: 10 },
+                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+            });
+            
+            yPos = doc.lastAutoTable.finalY + 15;
+            
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.text('II. Parent/Guardian Information', 20, yPos);
+            yPos += 10;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            
+            const guardianInfo = [
+                ['Primary Guardian:', formData.guardianName || 'N/A'],
+                ['Relationship:', formData.relationship || 'N/A'],
+                ['Cell Phone:', formData.cellPhone || 'N/A'],
+                ['Email:', formData.guardianEmail || 'N/A'],
+                ['Custody:', formData.custody || 'N/A']
+            ];
+            
+            doc.autoTable({
+                startY: yPos,
+                body: guardianInfo,
+                theme: 'grid',
+                styles: { fontSize: 10 },
+                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+            });
+            
+            yPos = doc.lastAutoTable.finalY + 15;
+            
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.text('III. Screening & Concerns', 20, yPos);
+            yPos += 10;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            
+            const screeningInfo = [
+                ['Reason for Services:', formData.reasonForServices || 'N/A'],
+                ['Past Diagnoses:', formData.pastDiagnoses || 'N/A'],
+                ['Current Medications:', formData.currentMedications || 'N/A'],
+                ['Safety Concerns:', formData.safetyConcerns || 'N/A']
+            ];
+            
+            doc.autoTable({
+                startY: yPos,
+                body: screeningInfo,
+                theme: 'grid',
+                styles: { fontSize: 10 },
+                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+            });
+            
+            yPos = doc.lastAutoTable.finalY + 15;
+            
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.text('Consents & Acknowledgments', 20, yPos);
+            yPos += 10;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            
+            const consents = [
+                ['Treatment Consent:', formData.treatmentConsent ? 'Agreed' : 'Not Agreed'],
+                ['Transportation Consent:', formData.transportConsent ? 'Agreed' : 'Not Agreed'],
+                ['Telehealth Consent:', formData.telehealthConsent ? 'Agreed' : 'Not Agreed'],
+                ['Fee Acknowledgment:', formData.feeAcknowledgment ? 'Agreed' : 'Not Agreed'],
+                ['Emergency Acknowledgment:', formData.emergencyAcknowledgment ? 'Agreed' : 'Not Agreed'],
+                ['Rights Acknowledgment:', formData.rightsAcknowledgment ? 'Agreed' : 'Not Agreed'],
+                ['Privacy Acknowledgment:', formData.privacyAcknowledgment ? 'Agreed' : 'Not Agreed'],
+                ['Payment Method:', formData.paymentMethod || 'N/A']
+            ];
+            
+            doc.autoTable({
+                startY: yPos,
+                body: consents,
+                theme: 'grid',
+                styles: { fontSize: 10 },
+                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+            });
+            
+            yPos = doc.lastAutoTable.finalY + 15;
+            
+            if (yPos > 220) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.text('Signatures', 20, yPos);
+            yPos += 10;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Parent/Guardian Signature:', 20, yPos);
+            
+            if (formData.parentSignature && !parentSignaturePad.isEmpty()) {
+                doc.addImage(formData.parentSignature, 'PNG', 20, yPos + 5, 80, 30);
+                yPos += 40;
+            } else {
+                yPos += 10;
+            }
+            
+            doc.text('Date: ' + (formData.signatureDate || 'N/A'), 20, yPos);
+            yPos += 20;
+            
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.text('Youth Signature (if applicable):', 20, yPos);
+            
+            if (formData.youthSignature && !youthSignaturePad.isEmpty()) {
+                doc.addImage(formData.youthSignature, 'PNG', 20, yPos + 5, 80, 30);
+            }
+            
+            doc.save(`Toledo_Ark_Intake_${document.getElementById('referenceId').textContent}.pdf`);
+        }
+    </script>
+</body>
+</html>
