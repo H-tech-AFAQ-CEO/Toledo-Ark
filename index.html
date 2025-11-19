@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,22 +28,46 @@
             background: white;
             border-radius: 24px;
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .header-section {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
             padding: 50px 40px;
             text-align: center;
             color: white;
             position: relative;
+            overflow: hidden;
         }
 
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
 
         .logo-title {
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 15px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 1;
         }
@@ -56,7 +81,7 @@
         }
 
         .progress-section {
-            background: #f8f9fa;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
             padding: 25px 40px;
             border-bottom: 2px solid #e9ecef;
             display: flex;
@@ -81,9 +106,9 @@
 
         .progress-bar-fill {
             height: 100%;
-            background: #4CAF50;
+            background: linear-gradient(90deg, #4CAF50, #66BB6A);
             border-radius: 20px;
-            width: 9%;
+            width: 7.7%;
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -122,8 +147,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-header {
@@ -173,6 +205,7 @@
         .input-field:focus {
             outline: none;
             border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
         }
 
         textarea.input-field {
@@ -217,7 +250,7 @@
         }
 
         .info-panel {
-            background: #e3f2fd;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             border-left: 5px solid #2196F3;
             padding: 20px;
             border-radius: 10px;
@@ -260,12 +293,14 @@
         }
 
         .btn-primary {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
         }
 
         .btn-primary:disabled {
@@ -296,7 +331,7 @@
 
         .navigation-footer {
             padding: 30px 40px;
-            background: #f8f9fa;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -310,9 +345,19 @@
         }
 
         @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .result-screen.show {
@@ -320,7 +365,7 @@
         }
 
         .success-screen {
-            background: #d4edda;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             color: #155724;
             border-radius: 20px;
             border: 2px solid #c3e6cb;
@@ -375,9 +420,19 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
         }
 
         .data-table {
@@ -387,26 +442,47 @@
         }
 
         .data-table thead tr {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
             color: white;
         }
 
-        .data-table th, .data-table td {
+        .data-table th,
+        .data-table td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
             text-align: left;
         }
 
         @media (max-width: 768px) {
-            .logo-title { font-size: 2rem; }
-            .subtitle-text { font-size: 1rem; }
-            .content-wrapper { padding: 30px 20px; max-height: 60vh; }
-            .section-header { font-size: 1.6rem; }
-            .navigation-footer { padding: 20px; }
-            .input-row, .options-grid { grid-template-columns: 1fr; }
+            .logo-title {
+                font-size: 2rem;
+            }
+
+            .subtitle-text {
+                font-size: 1rem;
+            }
+
+            .content-wrapper {
+                padding: 30px 20px;
+                max-height: 60vh;
+            }
+
+            .section-header {
+                font-size: 1.6rem;
+            }
+
+            .navigation-footer {
+                padding: 20px;
+            }
+
+            .input-row,
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="main-container" id="mainContainer">
         <div class="header-section">
@@ -415,7 +491,7 @@
         </div>
 
         <div class="progress-section">
-            <div class="step-text">Step <span id="stepNumber">1</span> of 11</div>
+            <div class="step-text">Step <span id="stepNumber">1</span> of 13</div>
             <div class="progress-container">
                 <div class="progress-bar-fill" id="progressBar"></div>
             </div>
@@ -452,7 +528,8 @@
                     <div class="input-row">
                         <div class="input-group">
                             <label class="input-label required-field">Social Security Number</label>
-                            <input type="text" class="input-field" name="ssn" placeholder="XXX-XX-XXXX" maxlength="11" required>
+                            <input type="text" class="input-field" name="ssn" placeholder="XXX-XX-XXXX" maxlength="11"
+                                required>
                             <div class="error-text">This field is required</div>
                         </div>
                         <div class="input-group">
@@ -471,13 +548,20 @@
                     <div class="input-row">
                         <div class="input-group">
                             <label class="input-label">Pronouns</label>
-                            <input type="text" class="input-field" name="pronouns" placeholder="e.g., he/him, she/her, they/them">
+                            <input type="text" class="input-field" name="pronouns"
+                                placeholder="e.g., he/him, she/her, they/them">
                         </div>
                         <div class="input-group">
                             <label class="input-label required-field">Primary Phone</label>
                             <input type="tel" class="input-field" name="phone" placeholder="(XXX) XXX-XXXX" required>
                             <div class="error-text">This field is required</div>
                         </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label required-field">Email Address</label>
+                        <input type="email" class="input-field" name="email" placeholder="your.email@example.com"
+                            required>
+                        <div class="error-text">Please enter a valid email address</div>
                     </div>
                     <div class="input-group">
                         <label class="input-label required-field">Home Address</label>
@@ -502,10 +586,6 @@
                         </div>
                     </div>
                     <div class="input-row">
-                        <div class="input-group">
-                            <label class="input-label">Email</label>
-                            <input type="email" class="input-field" name="email">
-                        </div>
                         <div class="input-group">
                             <label class="input-label required-field">School Name</label>
                             <input type="text" class="input-field" name="school" required>
@@ -553,7 +633,7 @@
                         </div>
                     </div>
                     <div class="input-group">
-                        <label class="input-label">Email</label>
+                        <label class="input-label">Guardian Email</label>
                         <input type="email" class="input-field" name="guardianEmail">
                     </div>
                     <div class="input-group">
@@ -721,35 +801,308 @@
                 </div>
 
                 <div class="form-section-block" id="section4">
-                    <div class="section-header">IV. Consent for Treatment Agreement</div>
+                    <div class="section-header">IV. PHQ-9 Depression Screening</div>
                     <div class="info-panel">
-                        <p>I, the undersigned Parent/Guardian, consent for my child to participate in the Day Treatment Program provided by Toledo Ark, which operates under certification and standards of the Ohio Department of Behavioral Health (DBH).</p>
+                        <h4>Patient Health Questionnaire-9 (PHQ-9)</h4>
+                        <p>Over the last 2 weeks, how often have you been bothered by any of the following problems?</p>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">1. Little interest or pleasure in doing things</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq1" value="0" id="phq1_0"
+                                    required><label for="phq1_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq1" value="1" id="phq1_1"><label
+                                    for="phq1_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq1" value="2" id="phq1_2"><label
+                                    for="phq1_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq1" value="3" id="phq1_3"><label
+                                    for="phq1_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">2. Feeling down, depressed, or hopeless</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq2" value="0" id="phq2_0"
+                                    required><label for="phq2_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq2" value="1" id="phq2_1"><label
+                                    for="phq2_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq2" value="2" id="phq2_2"><label
+                                    for="phq2_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq2" value="3" id="phq2_3"><label
+                                    for="phq2_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">3. Trouble falling or staying asleep, or sleeping too
+                            much</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq3" value="0" id="phq3_0"
+                                    required><label for="phq3_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq3" value="1" id="phq3_1"><label
+                                    for="phq3_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq3" value="2" id="phq3_2"><label
+                                    for="phq3_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq3" value="3" id="phq3_3"><label
+                                    for="phq3_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">4. Feeling tired or having little energy</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq4" value="0" id="phq4_0"
+                                    required><label for="phq4_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq4" value="1" id="phq4_1"><label
+                                    for="phq4_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq4" value="2" id="phq4_2"><label
+                                    for="phq4_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq4" value="3" id="phq4_3"><label
+                                    for="phq4_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">5. Poor appetite or overeating</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq5" value="0" id="phq5_0"
+                                    required><label for="phq5_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq5" value="1" id="phq5_1"><label
+                                    for="phq5_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq5" value="2" id="phq5_2"><label
+                                    for="phq5_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq5" value="3" id="phq5_3"><label
+                                    for="phq5_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">6. Feeling bad about yourself or that you are a
+                            failure</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq6" value="0" id="phq6_0"
+                                    required><label for="phq6_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq6" value="1" id="phq6_1"><label
+                                    for="phq6_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq6" value="2" id="phq6_2"><label
+                                    for="phq6_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq6" value="3" id="phq6_3"><label
+                                    for="phq6_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">7. Trouble concentrating on things</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq7" value="0" id="phq7_0"
+                                    required><label for="phq7_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq7" value="1" id="phq7_1"><label
+                                    for="phq7_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq7" value="2" id="phq7_2"><label
+                                    for="phq7_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq7" value="3" id="phq7_3"><label
+                                    for="phq7_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">8. Moving or speaking slowly, or being
+                            fidgety/restless</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq8" value="0" id="phq8_0"
+                                    required><label for="phq8_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq8" value="1" id="phq8_1"><label
+                                    for="phq8_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq8" value="2" id="phq8_2"><label
+                                    for="phq8_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq8" value="3" id="phq8_3"><label
+                                    for="phq8_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">9. Thoughts that you would be better off dead or
+                            hurting yourself</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phq9" value="0" id="phq9_0"
+                                    required><label for="phq9_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="phq9" value="1" id="phq9_1"><label
+                                    for="phq9_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="phq9" value="2" id="phq9_2"><label
+                                    for="phq9_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="phq9" value="3" id="phq9_3"><label
+                                    for="phq9_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section5">
+                    <div class="section-header">V. GAD-7 Anxiety Screening</div>
+                    <div class="info-panel">
+                        <h4>Generalized Anxiety Disorder-7 (GAD-7)</h4>
+                        <p>Over the last 2 weeks, how often have you been bothered by the following problems?</p>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">1. Feeling nervous, anxious, or on edge</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gad1" value="0" id="gad1_0"
+                                    required><label for="gad1_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="gad1" value="1" id="gad1_1"><label
+                                    for="gad1_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="gad1" value="2" id="gad1_2"><label
+                                    for="gad1_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="gad1" value="3" id="gad1_3"><label
+                                    for="gad1_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">2. Not being able to stop or control worrying</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gad2" value="0" id="gad2_0"
+                                    required><label for="gad2_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="gad2" value="1" id="gad2_1"><label
+                                    for="gad2_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="gad2" value="2" id="gad2_2"><label
+                                    for="gad2_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="gad2" value="3" id="gad2_3"><label
+                                    for="gad2_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">3. Worrying too much about different things</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gad3" value="0" id="gad3_0"
+                                    required><label for="gad3_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="gad3" value="1" id="gad3_1"><label
+                                    for="gad3_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="gad3" value="2" id="gad3_2"><label
+                                    for="gad3_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="gad3" value="3" id="gad3_3"><label
+                                    for="gad3_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">4. Trouble relaxing</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gad4" value="0" id="gad4_0"
+                                    required><label for="gad4_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="gad4" value="1" id="gad4_1"><label
+                                    for="gad4_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="gad4" value="2" id="gad4_2"><label
+                                    for="gad4_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="gad4" value="3" id="gad4_3"><label
+                                    for="gad4_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">5. Being so restless that it is hard to sit
+                            still</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gad5" value="0" id="gad5_0"
+                                    required><label for="gad5_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="gad5" value="1" id="gad5_1"><label
+                                    for="gad5_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="gad5" value="2" id="gad5_2"><label
+                                    for="gad5_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="gad5" value="3" id="gad5_3"><label
+                                    for="gad5_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">6. Becoming easily annoyed or irritable</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gad6" value="0" id="gad6_0"
+                                    required><label for="gad6_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="gad6" value="1" id="gad6_1"><label
+                                    for="gad6_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="gad6" value="2" id="gad6_2"><label
+                                    for="gad6_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="gad6" value="3" id="gad6_3"><label
+                                    for="gad6_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">7. Feeling afraid, as if something awful might
+                            happen</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gad7" value="0" id="gad7_0"
+                                    required><label for="gad7_0">Not at all</label></div>
+                            <div class="option-box"><input type="radio" name="gad7" value="1" id="gad7_1"><label
+                                    for="gad7_1">Several days</label></div>
+                            <div class="option-box"><input type="radio" name="gad7" value="2" id="gad7_2"><label
+                                    for="gad7_2">More than half the days</label></div>
+                            <div class="option-box"><input type="radio" name="gad7" value="3" id="gad7_3"><label
+                                    for="gad7_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                </div>
+
+                <div class="form-section-block" id="section6">
+                    <div class="section-header">VI. Consent for Treatment Agreement</div>
+                    <div class="info-panel">
+                        <p>I, the undersigned Parent/Guardian, consent for my child to participate in the Day Treatment
+                            Program provided by Toledo Ark, which operates under certification and standards of the Ohio
+                            Department of Behavioral Health (DBH).</p>
                         <br>
-                        <p>I give consent to the agency to provide treatment for my child which may include but is not limited to various therapies, transportation, psychosocial recreational activities, and/or medical intervention.</p>
+                        <p>I give consent to the agency to provide treatment for my child which may include but is not
+                            limited to various therapies, transportation, psychosocial recreational activities, and/or
+                            medical intervention.</p>
                         <br>
                         <p><strong>I understand that:</strong></p>
                         <ol>
                             <li>Day treatment is a structured, goal-oriented behavioral health program.</li>
-                            <li>Services may include individual, group, and family therapy; skills development; psycho-education; and behavior management.</li>
+                            <li>Services may include individual, group, and family therapy; skills development;
+                                psycho-education; and behavior management.</li>
                             <li>Services are voluntary and may be discontinued with written notice.</li>
-                            <li>Confidentiality of records will be maintained in accordance with Ohio Revised Code 5122.31, HIPAA, and 42 CFR Part 2.</li>
-                            <li>A treatment plan will be developed collaboratively and reviewed at least every 90 days.</li>
+                            <li>Confidentiality of records will be maintained in accordance with Ohio Revised Code
+                                5122.31, HIPAA, and 42 CFR Part 2.</li>
+                            <li>A treatment plan will be developed collaboratively and reviewed at least every 90 days.
+                            </li>
                             <li>I have received a copy of the agency's Client Rights and Grievance Policy.</li>
                         </ol>
                     </div>
                     <div class="input-group">
                         <div class="option-box" style="margin: 20px 0;">
-                            <input type="checkbox" name="treatmentConsent" value="agreed" id="treatmentConsent" required>
-                            <label for="treatmentConsent"><strong>I agree to the treatment consent terms above</strong></label>
+                            <input type="checkbox" name="treatmentConsent" value="agreed" id="treatmentConsent"
+                                required>
+                            <label for="treatmentConsent"><strong>I agree to the treatment consent terms
+                                    above</strong></label>
                         </div>
                         <div class="error-text">You must agree to continue</div>
                     </div>
                 </div>
 
-                <div class="form-section-block" id="section5">
-                    <div class="section-header">V. Consent for Transportation</div>
+                <div class="form-section-block" id="section7">
+                    <div class="section-header">VII. Consent for Transportation</div>
                     <div class="info-panel">
-                        <p>I authorize Toledo Ark to transport my child for purposes related to the Day Treatment Program, including travel to and from school, approved community activities, or therapeutic outings.</p>
+                        <p>I authorize Toledo Ark to transport my child for purposes related to the Day Treatment
+                            Program, including travel to and from school, approved community activities, or therapeutic
+                            outings.</p>
                         <br>
                         <p><strong>I understand that:</strong></p>
                         <ul>
@@ -760,15 +1113,16 @@
                     </div>
                     <div class="input-group">
                         <div class="option-box" style="margin: 20px 0;">
-                            <input type="checkbox" name="transportConsent" value="agreed" id="transportConsent" required>
+                            <input type="checkbox" name="transportConsent" value="agreed" id="transportConsent"
+                                required>
                             <label for="transportConsent"><strong>I consent to transportation services</strong></label>
                         </div>
                         <div class="error-text">You must agree to continue</div>
                     </div>
                 </div>
 
-                <div class="form-section-block" id="section6">
-                    <div class="section-header">VI. Consent for Telehealth Services</div>
+                <div class="form-section-block" id="section8">
+                    <div class="section-header">VIII. Consent for Telehealth Services</div>
                     <div class="info-panel">
                         <h4>Telehealth Services Agreement</h4>
                         <p><strong>I understand that:</strong></p>
@@ -776,7 +1130,8 @@
                             <li>Toledo Ark providers offer telehealth appointments for services</li>
                             <li>Video conferencing will not be the same as direct in-person visits</li>
                             <li>Telehealth has potential benefits including easier access and convenience</li>
-                            <li>There are potential risks including interruptions, unauthorized access, and technical difficulties</li>
+                            <li>There are potential risks including interruptions, unauthorized access, and technical
+                                difficulties</li>
                             <li>Either party can discontinue if connections are not adequate</li>
                         </ol>
                         <br>
@@ -803,15 +1158,16 @@
                     </div>
                     <div class="input-group">
                         <div class="option-box" style="margin: 20px 0;">
-                            <input type="checkbox" name="telehealthConsent" value="agreed" id="telehealthConsent" required>
+                            <input type="checkbox" name="telehealthConsent" value="agreed" id="telehealthConsent"
+                                required>
                             <label for="telehealthConsent"><strong>I consent to telehealth services</strong></label>
                         </div>
                         <div class="error-text">You must agree to continue</div>
                     </div>
                 </div>
 
-                <div class="form-section-block" id="section7">
-                    <div class="section-header">VII. Fees for Service</div>
+                <div class="form-section-block" id="section9">
+                    <div class="section-header">IX. Fees for Service</div>
                     <div class="info-panel">
                         <h4>Service Rates</h4>
                         <table class="data-table">
@@ -844,7 +1200,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p><em>All services will be billed to insurance, and we offer sliding scale for self-pay clients.</em></p>
+                        <p><em>All services will be billed to insurance, and we offer sliding scale for self-pay
+                                clients.</em></p>
                     </div>
                     <div class="input-group">
                         <label class="input-label required-field">Payment Method</label>
@@ -870,15 +1227,16 @@
                     </div>
                     <div class="input-group">
                         <div class="option-box" style="margin: 20px 0;">
-                            <input type="checkbox" name="feeAcknowledgment" value="agreed" id="feeAcknowledgment" required>
+                            <input type="checkbox" name="feeAcknowledgment" value="agreed" id="feeAcknowledgment"
+                                required>
                             <label for="feeAcknowledgment"><strong>I acknowledge the fee schedule</strong></label>
                         </div>
                         <div class="error-text">You must acknowledge to continue</div>
                     </div>
                 </div>
 
-                <div class="form-section-block" id="section8">
-                    <div class="section-header">VIII. Emergency & Crisis Policy</div>
+                <div class="form-section-block" id="section10">
+                    <div class="section-header">X. Emergency & Crisis Policy</div>
                     <div class="info-panel">
                         <h4>⚠️ Important Safety Information</h4>
                         <p>The safety of every youth in our program is our top priority.</p>
@@ -886,33 +1244,41 @@
                         <p><strong>If you are experiencing a mental health emergency, please use:</strong></p>
                         <ul>
                             <li><strong>Call 911</strong> if there is immediate danger to self or others</li>
-                            <li><strong>Call or text 988</strong> for the Suicide and Crisis Lifeline (available 24/7 statewide)</li>
-                            <li><strong>Local Crisis Line:</strong> Lucas County Crisis CARE Line, available 24/7 at <strong>419-904-CARE (2273)</strong></li>
-                            <li><strong>ProMedica Russell J. Ebeid Children's Hospital Psychiatric Unit</strong><br>2142 N. Cove Blvd., Toledo, Ohio 43606</li>
+                            <li><strong>Call or text 988</strong> for the Suicide and Crisis Lifeline (available 24/7
+                                statewide)</li>
+                            <li><strong>Local Crisis Line:</strong> Lucas County Crisis CARE Line, available 24/7 at
+                                <strong>419-904-CARE (2273)</strong></li>
+                            <li><strong>ProMedica Russell J. Ebeid Children's Hospital Psychiatric Unit</strong><br>2142
+                                N. Cove Blvd., Toledo, Ohio 43606</li>
                         </ul>
                         <br>
-                        <p><em>Our program is not a 24-hour facility. Calls or messages received after hours will be addressed the next business day.</em></p>
+                        <p><em>Our program is not a 24-hour facility. Calls or messages received after hours will be
+                                addressed the next business day.</em></p>
                     </div>
                     <div class="input-group">
                         <div class="option-box" style="margin: 20px 0;">
-                            <input type="checkbox" name="emergencyAcknowledgment" value="agreed" id="emergencyAcknowledgment" required>
-                            <label for="emergencyAcknowledgment"><strong>I understand the emergency procedures</strong></label>
+                            <input type="checkbox" name="emergencyAcknowledgment" value="agreed"
+                                id="emergencyAcknowledgment" required>
+                            <label for="emergencyAcknowledgment"><strong>I understand the emergency
+                                    procedures</strong></label>
                         </div>
                         <div class="error-text">You must acknowledge to continue</div>
                     </div>
                 </div>
 
-                <div class="form-section-block" id="section9">
-                    <div class="section-header">IX. Your Rights as our Client</div>
+                <div class="form-section-block" id="section11">
+                    <div class="section-header">XI. Your Rights as our Client</div>
                     <div class="info-panel">
                         <h4>CLIENT RIGHTS</h4>
                         <p>Toledo Ark implements policies and procedures to safeguard your rights including:</p>
                         <ul>
-                            <li>Freedom from abuse, financial or other exploitation, retaliation, humiliation and neglect</li>
+                            <li>Freedom from abuse, financial or other exploitation, retaliation, humiliation and
+                                neglect</li>
                             <li>Right to access information pertinent to your care and your own records</li>
                             <li>Informed consent or refusal regarding service delivery</li>
                             <li>Access to self-help and advocacy support services</li>
-                            <li>Right to be treated with consideration and respect for personal dignity, autonomy, and privacy</li>
+                            <li>Right to be treated with consideration and respect for personal dignity, autonomy, and
+                                privacy</li>
                             <li>Right to receive services in the least restrictive, feasible environment</li>
                             <li>Right to participate in development and review of your treatment plan</li>
                             <li>Right to confidentiality within legal limitations</li>
@@ -926,22 +1292,26 @@
                             <li>If unresolved, contact the Client Rights Officer</li>
                             <li>You may file a written grievance at any time</li>
                             <li>All grievances will be resolved within 20 calendar days</li>
-                            <li>You may also contact outside agencies including Ohio DBH and Ohio Legal Rights Service</li>
+                            <li>You may also contact outside agencies including Ohio DBH and Ohio Legal Rights Service
+                            </li>
                         </ol>
                         <br>
-                        <p><strong>Client Rights Officer:</strong> Kelly Morales<br>Phone: 419-283-3018<br>Address: 735 South St. Clair, Toledo, Ohio 43609</p>
+                        <p><strong>Client Rights Officer:</strong> Kelly Morales<br>Phone: 419-283-3018<br>Address: 735
+                            South St. Clair, Toledo, Ohio 43609</p>
                     </div>
                     <div class="input-group">
                         <div class="option-box" style="margin: 20px 0;">
-                            <input type="checkbox" name="rightsAcknowledgment" value="agreed" id="rightsAcknowledgment" required>
-                            <label for="rightsAcknowledgment"><strong>I acknowledge receipt of Client Rights and Grievance Policy information</strong></label>
+                            <input type="checkbox" name="rightsAcknowledgment" value="agreed" id="rightsAcknowledgment"
+                                required>
+                            <label for="rightsAcknowledgment"><strong>I acknowledge receipt of Client Rights and
+                                    Grievance Policy information</strong></label>
                         </div>
                         <div class="error-text">You must acknowledge to continue</div>
                     </div>
                 </div>
 
-                <div class="form-section-block" id="section10">
-                    <div class="section-header">X. Privacy Practices & Confidentiality</div>
+                <div class="form-section-block" id="section12">
+                    <div class="section-header">XII. Privacy Practices & Confidentiality</div>
                     <div class="info-panel">
                         <h4>NOTICE OF PRIVACY PRACTICES</h4>
                         <p><strong>Your Rights:</strong></p>
@@ -961,7 +1331,8 @@
                         </ul>
                         <br>
                         <h4>42 CFR Part 2 - Confidentiality of Alcohol & Drug Abuse Client Records</h4>
-                        <p>Federal laws protect information about alcohol and drug treatment. We cannot disclose that you receive services or any identifying information unless:</p>
+                        <p>Federal laws protect information about alcohol and drug treatment. We cannot disclose that
+                            you receive services or any identifying information unless:</p>
                         <ul>
                             <li>You consent in writing</li>
                             <li>The disclosure is allowed by court order</li>
@@ -972,17 +1343,23 @@
                     </div>
                     <div class="input-group">
                         <div class="option-box" style="margin: 20px 0;">
-                            <input type="checkbox" name="privacyAcknowledgment" value="agreed" id="privacyAcknowledgment" required>
-                            <label for="privacyAcknowledgment"><strong>I acknowledge receipt of Privacy Practices information</strong></label>
+                            <input type="checkbox" name="privacyAcknowledgment" value="agreed"
+                                id="privacyAcknowledgment" required>
+                            <label for="privacyAcknowledgment"><strong>I acknowledge receipt of Privacy Practices
+                                    information</strong></label>
                         </div>
                         <div class="error-text">You must acknowledge to continue</div>
                     </div>
                 </div>
 
-                <div class="form-section-block" id="section11">
-                    <div class="section-header">XI. Digital Signatures & Final Acknowledgment</div>
+                <div class="form-section-block" id="section13">
+                    <div class="section-header">XIII. Digital Signatures & Final Acknowledgment</div>
                     <div class="info-panel">
-                        <p>By signing below, I acknowledge I understand all sections of this intake packet, including consent forms, telehealth and transportation policies, fees, and emergency protocols. I have had the opportunity to ask questions and receive clarification regarding my child's participation in the Day Treatment Program under the Ohio Department of Behavioral Health (DBH) standards.</p>
+                        <p>By signing below, I acknowledge I understand all sections of this intake packet, including
+                            consent forms, telehealth and transportation policies, fees, and emergency protocols. I have
+                            had the opportunity to ask questions and receive clarification regarding my child's
+                            participation in the Day Treatment Program under the Ohio Department of Behavioral Health
+                            (DBH) standards.</p>
                     </div>
 
                     <div class="input-row">
@@ -990,8 +1367,10 @@
                             <label class="input-label required-field">Parent/Guardian Signature</label>
                             <div class="signature-area" id="parentSignatureArea">
                                 <canvas id="parentCanvas"></canvas>
+                                <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="parentSignatureText" style="margin-top: 10px;">
                             </div>
-                            <button type="button" class="btn btn-outline" onclick="clearSignature('parent')" style="margin-top: 10px;">Clear Signature</button>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('parent')"
+                                style="margin-top: 10px;">Clear Signature</button>
                             <div class="error-text">Signature is required</div>
                         </div>
 
@@ -999,8 +1378,10 @@
                             <label class="input-label">Youth Signature (if applicable)</label>
                             <div class="signature-area" id="youthSignatureArea">
                                 <canvas id="youthCanvas"></canvas>
+                                <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="youthSignatureText" style="margin-top: 10px;">
                             </div>
-                            <button type="button" class="btn btn-outline" onclick="clearSignature('youth')" style="margin-top: 10px;">Clear Signature</button>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('youth')"
+                                style="margin-top: 10px;">Clear Signature</button>
                         </div>
                     </div>
 
@@ -1012,14 +1393,17 @@
                         </div>
                     </div>
 
-                    <div class="info-panel" style="background: #d4edda; border-left: 5px solid #28a745; margin-top: 30px;">
-                        <p style="text-align: center; font-size: 1.1rem;"><strong>✅ You're almost done!</strong><br>Please review all information before submitting.</p>
+                    <div class="info-panel"
+                        style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 5px solid #28a745; margin-top: 30px;">
+                        <p style="text-align: center; font-size: 1.1rem;"><strong>✅ You're almost
+                                done!</strong><br>Please review all information before submitting.</p>
                     </div>
                 </div>
             </div>
 
             <div class="navigation-footer">
-                <button type="button" id="prevBtn" class="btn btn-secondary" style="visibility: hidden;">Previous</button>
+                <button type="button" id="prevBtn" class="btn btn-secondary"
+                    style="visibility: hidden;">Previous</button>
                 <button type="button" id="nextBtn" class="btn btn-primary">Next</button>
                 <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">Submit Form</button>
             </div>
@@ -1028,29 +1412,35 @@
         <div class="result-screen success-screen" id="successScreen">
             <span class="result-icon">✅</span>
             <h2 class="result-title">Form Submitted Successfully!</h2>
-            <p class="result-message">Thank you for completing the Toledo Ark intake form. Our team will review your submission and contact you within 2-3 business days.</p>
+            <p class="result-message">Thank you for completing the Toledo Ark intake form. Our team will review your
+                submission and contact you within 2-3 business days.</p>
             <div class="reference-box">
                 <strong>Reference ID:</strong> <span id="referenceId"></span>
             </div>
-            <button type="button" class="btn btn-primary" onclick="downloadPDF()" style="margin-top: 20px;">Download PDF Copy</button>
-            <button type="button" class="btn btn-outline" onclick="location.reload()" style="margin-top: 10px;">Start New Form</button>
+            <button type="button" class="btn btn-primary" onclick="downloadPDF()" style="margin-top: 20px;">📥 Download
+                PDF Copy</button>
+            <button type="button" class="btn btn-outline" onclick="location.reload()" style="margin-top: 10px;">Start
+                New Form</button>
         </div>
 
         <div class="result-screen error-screen" id="errorScreen">
             <span class="result-icon">❌</span>
             <h2 class="result-title">Submission Error</h2>
-            <p class="result-message">We're sorry, but there was an error submitting your form. Please check your information and try again.</p>
+            <p class="result-message">We're sorry, but there was an error submitting your form. Please check your
+                information and try again.</p>
             <div class="reference-box">
                 <strong>Error:</strong> <span id="errorMessage">Unknown error occurred</span>
             </div>
-            <button type="button" class="btn btn-primary" onclick="hideError()" style="margin-top: 20px;">Return to Form</button>
-            <button type="button" class="btn btn-secondary" onclick="location.reload()" style="margin-top: 10px;">Start Over</button>
+            <button type="button" class="btn btn-primary" onclick="hideError()" style="margin-top: 20px;">Return to
+                Form</button>
+            <button type="button" class="btn btn-secondary" onclick="location.reload()" style="margin-top: 10px;">Start
+                Over</button>
         </div>
     </div>
 
     <script>
         let currentSection = 1;
-        const totalSections = 11;
+        const totalSections = 13;
         let parentSignaturePad, youthSignaturePad;
         let formData = {};
 
@@ -1069,9 +1459,9 @@
             const parentCanvas = document.getElementById('parentCanvas');
             const youthCanvas = document.getElementById('youthCanvas');
 
-            parentCanvas.width = parentCanvas.parentElement.clientWidth;
+            parentCanvas.width = 300;
             parentCanvas.height = 220;
-            youthCanvas.width = youthCanvas.parentElement.clientWidth;
+            youthCanvas.width = 300;
             youthCanvas.height = 220;
 
             parentSignaturePad = new SignaturePad(parentCanvas);
@@ -1097,8 +1487,10 @@
         function clearSignature(type) {
             if (type === 'parent') {
                 parentSignaturePad.clear();
+                document.getElementById('parentSignatureText').value = '';
             } else {
                 youthSignaturePad.clear();
+                document.getElementById('youthSignatureText').value = '';
             }
         }
 
@@ -1168,6 +1560,7 @@
                     document.getElementById(`section${currentSection}`).classList.add('active');
                     updateProgress();
                     updateNavigation();
+                    if (currentSection === 13) resizeCanvases();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
@@ -1188,18 +1581,20 @@
             const progress = (currentSection / totalSections) * 100;
             document.getElementById('progressBar').style.width = `${progress}%`;
             document.getElementById('stepNumber').textContent = currentSection;
-            
+
             const titles = [
-                'Client Information', 
-                'Parent/Guardian Info', 
-                'Screening Form', 
-                'Treatment Consent', 
-                'Transportation', 
-                'Telehealth', 
-                'Fees', 
-                'Emergency Policy', 
-                'Client Rights', 
-                'Privacy', 
+                'Client Information',
+                'Parent/Guardian Info',
+                'Screening Form',
+                'PHQ-9 Depression',
+                'GAD-7 Anxiety',
+                'Treatment Consent',
+                'Transportation',
+                'Telehealth',
+                'Fees',
+                'Emergency Policy',
+                'Client Rights',
+                'Privacy',
                 'Signatures'
             ];
             document.getElementById('sectionName').textContent = titles[currentSection - 1];
@@ -1209,9 +1604,9 @@
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const submitBtn = document.getElementById('submitBtn');
-            
+
             prevBtn.style.visibility = currentSection > 1 ? 'visible' : 'hidden';
-            
+
             if (currentSection === totalSections) {
                 nextBtn.style.display = 'none';
                 submitBtn.style.display = 'inline-block';
@@ -1225,10 +1620,10 @@
             const section = document.getElementById(`section${currentSection}`);
             const requiredInputs = section.querySelectorAll('input[required], select[required], textarea[required]');
             let isValid = true;
-            
+
             requiredInputs.forEach(input => {
                 const errorMsg = input.closest('.input-group').querySelector('.error-text');
-                
+
                 if (input.type === 'checkbox') {
                     if (!input.checked) {
                         input.classList.add('error');
@@ -1247,6 +1642,16 @@
                     } else if (checked && errorMsg) {
                         errorMsg.classList.remove('show');
                     }
+                } else if (input.type === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!input.value.trim() || !emailRegex.test(input.value)) {
+                        input.classList.add('error');
+                        if (errorMsg) errorMsg.classList.add('show');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('error');
+                        if (errorMsg) errorMsg.classList.remove('show');
+                    }
                 } else if (!input.value.trim()) {
                     input.classList.add('error');
                     if (errorMsg) errorMsg.classList.add('show');
@@ -1256,40 +1661,43 @@
                     if (errorMsg) errorMsg.classList.remove('show');
                 }
             });
-            
-            if (currentSection === 11) {
-                if (parentSignaturePad.isEmpty()) {
+
+            if (currentSection === 13) {
+                if (parentSignaturePad.isEmpty() && !document.getElementById('parentSignatureText').value.trim()) {
                     const errorMsg = document.querySelector('#parentSignatureArea').parentElement.querySelector('.error-text');
                     if (errorMsg) errorMsg.classList.add('show');
                     isValid = false;
+                } else {
+                    const errorMsg = document.querySelector('#parentSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.remove('show');
                 }
             }
-            
+
             return isValid;
         }
 
         function submitForm(e) {
             e.preventDefault();
-            
+
             if (!validateCurrentSection()) {
                 showError('Please complete all required fields before submitting.');
                 return;
             }
-            
+
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting...';
-            
+
             try {
                 collectFormData();
                 const referenceId = 'ARK-' + Date.now();
                 document.getElementById('referenceId').textContent = referenceId;
-                
+
                 setTimeout(() => {
                     document.getElementById('mainContainer').querySelector('form').style.display = 'none';
                     document.getElementById('successScreen').classList.add('show');
                 }, 500);
-                
+
             } catch (error) {
                 showError('An error occurred while processing your form: ' + error.message);
                 submitBtn.disabled = false;
@@ -1312,7 +1720,7 @@
             const form = document.getElementById('mainForm');
             const data = new FormData(form);
             formData = {};
-            
+
             for (let [key, value] of data.entries()) {
                 if (formData[key]) {
                     if (Array.isArray(formData[key])) {
@@ -1324,71 +1732,108 @@
                     formData[key] = value;
                 }
             }
-            
-            formData.parentSignature = parentSignaturePad.toDataURL();
-            formData.youthSignature = youthSignaturePad.toDataURL();
+
+            let phqScore = 0;
+            for (let i = 1; i <= 9; i++) {
+                phqScore += parseInt(formData[`phq${i}`] || 0);
+            }
+            formData.phqScore = phqScore;
+
+            let gadScore = 0;
+            for (let i = 1; i <= 7; i++) {
+                gadScore += parseInt(formData[`gad${i}`] || 0);
+            }
+            formData.gadScore = gadScore;
+
+            formData.parentSignature = parentSignaturePad.isEmpty() ? document.getElementById('parentSignatureText').value.trim() : parentSignaturePad.toDataURL();
+            formData.youthSignature = youthSignaturePad.isEmpty() ? document.getElementById('youthSignatureText').value.trim() : youthSignaturePad.toDataURL();
             formData.submittedAt = new Date().toISOString();
         }
 
         function downloadPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            doc.setFontSize(20);
-            doc.setTextColor(76, 175, 80);
-            doc.text('Toledo Ark - Intake Form', 105, 20, { align: 'center' });
-            
-            doc.setFontSize(12);
-            doc.setTextColor(0, 0, 0);
-            doc.text(`Reference ID: ${document.getElementById('referenceId').textContent}`, 105, 30, { align: 'center' });
-            doc.text(`Submission Date: ${new Date().toLocaleDateString()}`, 105, 40, { align: 'center' });
-            
-            let yPos = 55;
-            
-            doc.setFontSize(14);
-            doc.setTextColor(76, 175, 80);
-            doc.text('I. Client Information', 20, yPos);
-            yPos += 10;
-            
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+
+            doc.setFillColor(76, 175, 80);
+            doc.rect(0, 0, pageWidth, 40, 'F');
+
+            doc.setFontSize(28);
+            doc.setTextColor(255, 255, 255);
+            doc.setFont(undefined, 'bold');
+            doc.text('🌱 TOLEDO ARK', pageWidth / 2, 18, { align: 'center' });
+
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            doc.text('Youth Behavioral Health Services', pageWidth / 2, 28, { align: 'center' });
+            doc.text('Day Treatment Program - Intake Form', pageWidth / 2, 35, { align: 'center' });
+
+            doc.setFillColor(245, 245, 245);
+            doc.rect(0, 42, pageWidth, 18, 'F');
+
             doc.setFontSize(10);
             doc.setTextColor(0, 0, 0);
-            
+            doc.setFont(undefined, 'bold');
+            doc.text(`Reference ID: ${document.getElementById('referenceId').textContent}`, 15, 50);
+            doc.text(`Submission Date: ${new Date().toLocaleDateString()}`, 15, 56);
+
+            let yPos = 70;
+
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.setFont(undefined, 'bold');
+            doc.text('I. Client Information', 15, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont(undefined, 'normal');
+
             const clientInfo = [
                 ['Youth Name:', formData.youthName || 'N/A'],
                 ['Preferred Name:', formData.preferredName || 'N/A'],
                 ['Date of Birth:', formData.dob || 'N/A'],
                 ['Age:', formData.age || 'N/A'],
                 ['Gender:', formData.gender || 'N/A'],
+                ['Email:', formData.email || 'N/A'],
                 ['Phone:', formData.phone || 'N/A'],
-                ['Address:', formData.address || 'N/A'],
-                ['City, State, ZIP:', `${formData.city || 'N/A'}, ${formData.state || 'N/A'} ${formData.zip || 'N/A'}`],
+                ['Address:', `${formData.address || 'N/A'}, ${formData.city || 'N/A'}, ${formData.state || 'N/A'} ${formData.zip || 'N/A'}`],
                 ['School:', formData.school || 'N/A'],
                 ['Grade:', formData.grade || 'N/A']
             ];
-            
+
             doc.autoTable({
                 startY: yPos,
                 body: clientInfo,
-                theme: 'grid',
-                styles: { fontSize: 10 },
-                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 45, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                },
+                headStyles: { fillColor: [76, 175, 80] }
             });
-            
-            yPos = doc.lastAutoTable.finalY + 15;
-            
+
+            yPos = doc.lastAutoTable.finalY + 12;
+
             if (yPos > 250) {
                 doc.addPage();
                 yPos = 20;
             }
-            
+
             doc.setFontSize(14);
             doc.setTextColor(76, 175, 80);
-            doc.text('II. Parent/Guardian Information', 20, yPos);
-            yPos += 10;
-            
-            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('II. Parent/Guardian Information', 15, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
-            
+            doc.setFont(undefined, 'normal');
+
             const guardianInfo = [
                 ['Primary Guardian:', formData.guardianName || 'N/A'],
                 ['Relationship:', formData.relationship || 'N/A'],
@@ -1396,118 +1841,194 @@
                 ['Email:', formData.guardianEmail || 'N/A'],
                 ['Custody:', formData.custody || 'N/A']
             ];
-            
+
             doc.autoTable({
                 startY: yPos,
                 body: guardianInfo,
-                theme: 'grid',
-                styles: { fontSize: 10 },
-                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 45, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                }
             });
-            
-            yPos = doc.lastAutoTable.finalY + 15;
-            
+
+            yPos = doc.lastAutoTable.finalY + 12;
+
             if (yPos > 250) {
                 doc.addPage();
                 yPos = 20;
             }
-            
+
             doc.setFontSize(14);
             doc.setTextColor(76, 175, 80);
-            doc.text('III. Screening & Concerns', 20, yPos);
-            yPos += 10;
-            
-            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('III. Screening & Concerns', 15, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
-            
+            doc.setFont(undefined, 'normal');
+
             const screeningInfo = [
-                ['Reason for Services:', formData.reasonForServices || 'N/A'],
-                ['Past Diagnoses:', formData.pastDiagnoses || 'N/A'],
-                ['Current Medications:', formData.currentMedications || 'N/A'],
+                ['Reason for Services:', doc.splitTextToSize(formData.reasonForServices || 'N/A', 130)],
+                ['Past Diagnoses:', doc.splitTextToSize(formData.pastDiagnoses || 'N/A', 130)],
+                ['Current Medications:', doc.splitTextToSize(formData.currentMedications || 'N/A', 130)],
                 ['Safety Concerns:', formData.safetyConcerns || 'N/A']
             ];
-            
+
             doc.autoTable({
                 startY: yPos,
                 body: screeningInfo,
-                theme: 'grid',
-                styles: { fontSize: 10 },
-                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 50, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                }
             });
-            
-            yPos = doc.lastAutoTable.finalY + 15;
-            
+
+            yPos = doc.lastAutoTable.finalY + 12;
+
             if (yPos > 250) {
                 doc.addPage();
                 yPos = 20;
             }
-            
+
             doc.setFontSize(14);
             doc.setTextColor(76, 175, 80);
-            doc.text('Consents & Acknowledgments', 20, yPos);
-            yPos += 10;
-            
-            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('IV. Mental Health Screening Results', 15, yPos);
+            yPos += 8;
+
+            const phqScore = formData.phqScore || 0;
+            let phqLevel = 'Minimal';
+            if (phqScore >= 15) phqLevel = 'Moderately Severe to Severe';
+            else if (phqScore >= 10) phqLevel = 'Moderate';
+            else if (phqScore >= 5) phqLevel = 'Mild';
+
+            const gadScore = formData.gadScore || 0;
+            let gadLevel = 'Minimal';
+            if (gadScore >= 15) gadLevel = 'Severe';
+            else if (gadScore >= 10) gadLevel = 'Moderate';
+            else if (gadScore >= 5) gadLevel = 'Mild';
+
+            const screeningResults = [
+                ['PHQ-9 Depression Score:', `${phqScore}/27 - ${phqLevel}`],
+                ['GAD-7 Anxiety Score:', `${gadScore}/21 - ${gadLevel}`]
+            ];
+
+            doc.autoTable({
+                startY: yPos,
+                body: screeningResults,
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 70, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                }
+            });
+
+            yPos = doc.lastAutoTable.finalY + 12;
+
+            if (yPos > 230) {
+                doc.addPage();
+                yPos = 20;
+            }
+
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.setFont(undefined, 'bold');
+            doc.text('Consents & Acknowledgments', 15, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
-            
+            doc.setFont(undefined, 'normal');
+
             const consents = [
-                ['Treatment Consent:', formData.treatmentConsent ? 'Agreed' : 'Not Agreed'],
-                ['Transportation Consent:', formData.transportConsent ? 'Agreed' : 'Not Agreed'],
-                ['Telehealth Consent:', formData.telehealthConsent ? 'Agreed' : 'Not Agreed'],
-                ['Fee Acknowledgment:', formData.feeAcknowledgment ? 'Agreed' : 'Not Agreed'],
-                ['Emergency Acknowledgment:', formData.emergencyAcknowledgment ? 'Agreed' : 'Not Agreed'],
-                ['Rights Acknowledgment:', formData.rightsAcknowledgment ? 'Agreed' : 'Not Agreed'],
-                ['Privacy Acknowledgment:', formData.privacyAcknowledgment ? 'Agreed' : 'Not Agreed'],
+                ['Treatment Consent:', formData.treatmentConsent ? '✓ Agreed' : '✗ Not Agreed'],
+                ['Transportation Consent:', formData.transportConsent ? '✓ Agreed' : '✗ Not Agreed'],
+                ['Telehealth Consent:', formData.telehealthConsent ? '✓ Agreed' : '✗ Not Agreed'],
+                ['Fee Acknowledgment:', formData.feeAcknowledgment ? '✓ Agreed' : '✗ Not Agreed'],
+                ['Emergency Acknowledgment:', formData.emergencyAcknowledgment ? '✓ Agreed' : '✗ Not Agreed'],
+                ['Rights Acknowledgment:', formData.rightsAcknowledgment ? '✓ Agreed' : '✗ Not Agreed'],
+                ['Privacy Acknowledgment:', formData.privacyAcknowledgment ? '✓ Agreed' : '✗ Not Agreed'],
                 ['Payment Method:', formData.paymentMethod || 'N/A']
             ];
-            
+
             doc.autoTable({
                 startY: yPos,
                 body: consents,
-                theme: 'grid',
-                styles: { fontSize: 10 },
-                columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' }, 1: { cellWidth: 'auto' } }
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 70, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                }
             });
-            
+
             yPos = doc.lastAutoTable.finalY + 15;
-            
-            if (yPos > 220) {
+
+            if (yPos > 210) {
                 doc.addPage();
                 yPos = 20;
             }
-            
+
             doc.setFontSize(14);
             doc.setTextColor(76, 175, 80);
-            doc.text('Signatures', 20, yPos);
+            doc.setFont(undefined, 'bold');
+            doc.text('Signatures', 15, yPos);
             yPos += 10;
-            
+
             doc.setFontSize(10);
             doc.setTextColor(0, 0, 0);
-            doc.text('Parent/Guardian Signature:', 20, yPos);
-            
-            if (formData.parentSignature && !parentSignaturePad.isEmpty()) {
-                doc.addImage(formData.parentSignature, 'PNG', 20, yPos + 5, 80, 30);
-                yPos += 40;
+            doc.setFont(undefined, 'normal');
+            doc.text('Parent/Guardian Signature:', 15, yPos);
+
+            if (formData.parentSignature) {
+                if (formData.parentSignature.startsWith('data:')) {
+                    doc.addImage(formData.parentSignature, 'PNG', 15, yPos + 3, 80, 25);
+                    yPos += 32;
+                } else {
+                    doc.text('Parent/Guardian Signature: ' + formData.parentSignature, 15, yPos + 3);
+                    yPos += 10;
+                }
             } else {
                 yPos += 10;
             }
-            
-            doc.text('Date: ' + (formData.signatureDate || 'N/A'), 20, yPos);
-            yPos += 20;
-            
+
+            doc.text('Date: ' + (formData.signatureDate || 'N/A'), 15, yPos);
+            yPos += 15;
+
             if (yPos > 250) {
                 doc.addPage();
                 yPos = 20;
             }
-            
-            doc.text('Youth Signature (if applicable):', 20, yPos);
-            
-            if (formData.youthSignature && !youthSignaturePad.isEmpty()) {
-                doc.addImage(formData.youthSignature, 'PNG', 20, yPos + 5, 80, 30);
+
+            doc.text('Youth Signature (if applicable):', 15, yPos);
+
+            if (formData.youthSignature) {
+                if (formData.youthSignature.startsWith('data:')) {
+                    doc.addImage(formData.youthSignature, 'PNG', 15, yPos + 3, 80, 25);
+                } else {
+                    doc.text('Youth Signature: ' + formData.youthSignature, 15, yPos + 3);
+                }
             }
-            
-            doc.save(`Toledo_Ark_Intake_${document.getElementById('referenceId').textContent}.pdf`);
+
+            doc.setFillColor(76, 175, 80);
+            doc.rect(0, pageHeight - 15, pageWidth, 15, 'F');
+
+            doc.setFontSize(8);
+            doc.setTextColor(255, 255, 255);
+            doc.text('735 S. St Clair St, Toledo, OH 43609 | www.toledoark.com | Phone: (419) 283-3018', pageWidth / 2, pageHeight - 7, { align: 'center' });
+
+            window.open(doc.output('bloburl'));
+            } catch (error) {
+                alert('Error generating PDF: ' + error.message);
+            }
         }
     </script>
 </body>
+
 </html>
