@@ -108,7 +108,7 @@
             height: 100%;
             background: linear-gradient(90deg, #4CAF50, #66BB6A);
             border-radius: 20px;
-            width: 7.7%;
+            width: 6.25%;
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -453,6 +453,86 @@
             text-align: left;
         }
 
+        .welcome-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px 40px;
+            margin: 0;
+            border-bottom: 3px solid #4CAF50;
+        }
+
+        .welcome-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-subtitle {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .mission-text,
+        .program-intro {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .program-details {
+            display: grid;
+            gap: 25px;
+        }
+
+        .program-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #4CAF50;
+            transition: transform 0.3s ease;
+        }
+
+        .program-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .program-item h4 {
+            color: #4CAF50;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .program-item p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+            font-size: 1rem;
+        }
+
         @media (max-width: 768px) {
             .logo-title {
                 font-size: 2rem;
@@ -460,6 +540,36 @@
 
             .subtitle-text {
                 font-size: 1rem;
+            }
+
+            .welcome-section {
+                padding: 30px 20px;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .mission-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .mission-text,
+            .program-intro {
+                font-size: 1rem;
+            }
+
+            .program-item {
+                padding: 20px;
+            }
+
+            .program-item h4 {
+                font-size: 1.1rem;
             }
 
             .content-wrapper {
@@ -490,8 +600,47 @@
             <div class="subtitle-text">Youth Behavioral Health Services - Day Treatment Program</div>
         </div>
 
+        <!-- Welcome Introduction Section -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1 class="welcome-title">WELCOME, LET US INTRODUCE OURSELVES!!!</h1>
+
+                <div class="mission-section">
+                    <h2 class="section-title">🌱 Mission Statement</h2>
+                    <h3 class="mission-subtitle">Helping Children Thrive In Childhood—Mind, Body, and Spirit</h3>
+                    <p class="mission-text">
+                        At Toledo Ark Behavioral Health, our mission is to provide a safe, nurturing, and empowering environment where youth ages 6–17 can thrive. We are committed to strengthening the whole child—through mentorship, recreation, competitive training, and a strong concentration on mental health and emotional well-being. Our licensed professionals and mentors guide children in building resilience, confidence, and self-worth, ensuring they not only survive life's challenges but develop the inner tools to grow into healthy, grounded adults.
+                    </p>
+                </div>
+
+                <div class="program-section">
+                    <h2 class="section-title">🧠 Program Description</h2>
+                    <p class="program-intro">
+                        Toledo Ark's programs are designed to nurture both mental wellness and personal growth, integrating behavioral health services into every aspect of recreation and mentorship.
+                    </p>
+
+                    <div class="program-details">
+                        <div class="program-item">
+                            <h4>• Mental Health & Wellness Programs</h4>
+                            <p>Our licensed social workers and therapists provide individual and group sessions, trauma-informed care, and behavioral health activities. We create safe spaces for children to explore their emotions, practice coping skills, and strengthen their mental health alongside their physical development.</p>
+                        </div>
+
+                        <div class="program-item">
+                            <h4>• Mentorship & Coaching</h4>
+                            <p>Youth are paired with positive role models who provide situational coaching, emotional support, and guidance in self-advocacy—helping them feel seen, heard, and respected.</p>
+                        </div>
+
+                        <div class="program-item">
+                            <h4>• Youth Summer & After-School Programs</h4>
+                            <p>Recreational and fitness-based activities are intentionally designed to reduce stress, foster belonging, and provide structured outlets for emotional release.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="progress-section">
-            <div class="step-text">Step <span id="stepNumber">1</span> of 13</div>
+            <div class="step-text">Step <span id="stepNumber">1</span> of 16</div>
             <div class="progress-container">
                 <div class="progress-bar-fill" id="progressBar"></div>
             </div>
@@ -654,13 +803,21 @@
                     </div>
                     <div class="input-row">
                         <div class="input-group">
+                            <label class="input-label">Employer</label>
+                            <input type="text" class="input-field" name="secondaryEmployer">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Work Phone</label>
+                            <input type="tel" class="input-field" name="secondaryWorkPhone">
+                        </div>
+                        <div class="input-group">
                             <label class="input-label">Cell Phone</label>
                             <input type="tel" class="input-field" name="secondaryCellPhone">
                         </div>
-                        <div class="input-group">
-                            <label class="input-label">Email</label>
-                            <input type="email" class="input-field" name="secondaryEmail">
-                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Email</label>
+                        <input type="email" class="input-field" name="secondaryEmail">
                     </div>
 
                     <div class="input-group" style="margin-top: 30px;">
@@ -688,6 +845,11 @@
                             </div>
                         </div>
                         <div class="error-text">Please select custody arrangement</div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Upload Custody Documents (if applicable)</label>
+                        <input type="file" class="input-field" name="custodyDocuments" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple>
+                        <small style="color: #666; font-size: 0.875rem;">Accepted formats: PDF, DOC, DOCX, JPG, PNG</small>
                     </div>
                 </div>
 
@@ -738,6 +900,10 @@
                                 <input type="checkbox" name="areasAffected" value="Safety" id="area8">
                                 <label for="area8">Safety</label>
                             </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="areasAffected" value="Other" id="area9">
+                                <label for="area9">Other</label>
+                            </div>
                         </div>
                     </div>
 
@@ -763,6 +929,10 @@
                             <div class="option-box">
                                 <input type="checkbox" name="currentSupports" value="None" id="support5">
                                 <label for="support5">None</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="checkbox" name="currentSupports" value="Other" id="support6">
+                                <label for="support6">Other</label>
                             </div>
                         </div>
                     </div>
@@ -945,6 +1115,17 @@
                         </div>
                         <div class="error-text">This field is required</div>
                     </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="phqDifficulty" value="Not difficult at all" id="phq_difficulty_0" required><label for="phq_difficulty_0">Not difficult at all</label></div>
+                            <div class="option-box"><input type="radio" name="phqDifficulty" value="Somewhat difficult" id="phq_difficulty_1"><label for="phq_difficulty_1">Somewhat difficult</label></div>
+                            <div class="option-box"><input type="radio" name="phqDifficulty" value="Very difficult" id="phq_difficulty_2"><label for="phq_difficulty_2">Very difficult</label></div>
+                            <div class="option-box"><input type="radio" name="phqDifficulty" value="Extremely difficult" id="phq_difficulty_3"><label for="phq_difficulty_3">Extremely difficult</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
                 </div>
 
                 <div class="form-section-block" id="section5">
@@ -1057,6 +1238,17 @@
                                     for="gad7_2">More than half the days</label></div>
                             <div class="option-box"><input type="radio" name="gad7" value="3" id="gad7_3"><label
                                     for="gad7_3">Nearly every day</label></div>
+                        </div>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label class="input-label required-field">How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?</label>
+                        <div class="options-grid">
+                            <div class="option-box"><input type="radio" name="gadDifficulty" value="Not difficult at all" id="gad_difficulty_0" required><label for="gad_difficulty_0">Not difficult at all</label></div>
+                            <div class="option-box"><input type="radio" name="gadDifficulty" value="Somewhat difficult" id="gad_difficulty_1"><label for="gad_difficulty_1">Somewhat difficult</label></div>
+                            <div class="option-box"><input type="radio" name="gadDifficulty" value="Very difficult" id="gad_difficulty_2"><label for="gad_difficulty_2">Very difficult</label></div>
+                            <div class="option-box"><input type="radio" name="gadDifficulty" value="Extremely difficult" id="gad_difficulty_3"><label for="gad_difficulty_3">Extremely difficult</label></div>
                         </div>
                         <div class="error-text">This field is required</div>
                     </div>
@@ -1399,6 +1591,772 @@
                                 done!</strong><br>Please review all information before submitting.</p>
                     </div>
                 </div>
+
+                <!-- ODM Standard Authorization Form - Form A -->
+                <div class="form-section-block" id="section14">
+                    <div class="section-header">XIV. ODM Standard Authorization Form (ROI) — Form A</div>
+                    <div class="info-panel">
+                        <h4>Authorization for Release of Information</h4>
+                        <p>This form authorizes the release of protected health information in accordance with HIPAA and Ohio Revised Code requirements.</p>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION I — Client Information</h3>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">First Name</label>
+                            <input type="text" class="input-field" name="roiFirstName" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Middle Initial</label>
+                            <input type="text" class="input-field" name="roiMiddleInitial" maxlength="1">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Last Name</label>
+                            <input type="text" class="input-field" name="roiLastName" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Date of Birth</label>
+                            <input type="date" class="input-field" name="roiDOB" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Social Security Number</label>
+                            <input type="text" class="input-field" name="roiSSN" placeholder="XXX-XX-XXXX" maxlength="11" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Address</label>
+                        <input type="text" class="input-field" name="roiAddress">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">City</label>
+                            <input type="text" class="input-field" name="roiCity">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">State</label>
+                            <input type="text" class="input-field" name="roiState" value="OH">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">ZIP Code</label>
+                            <input type="text" class="input-field" name="roiZip" maxlength="5">
+                        </div>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION II — Disclosing Entity & Recipient Info</h3>
+
+                    <div class="input-group">
+                        <label class="input-label required-field">Disclosing Entity Name</label>
+                        <input type="text" class="input-field" name="disclosingEntityName" required>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Entity Address</label>
+                            <input type="text" class="input-field" name="disclosingEntityAddress">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Telephone Number</label>
+                            <input type="tel" class="input-field" name="disclosingEntityPhone" placeholder="(XXX) XXX-XXXX">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Entity City</label>
+                            <input type="text" class="input-field" name="disclosingEntityCity">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Entity State</label>
+                            <input type="text" class="input-field" name="disclosingEntityState" value="OH">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Entity ZIP</label>
+                            <input type="text" class="input-field" name="disclosingEntityZip" maxlength="5">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label required-field">Recipient Name</label>
+                        <input type="text" class="input-field" name="recipientName" required>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label required-field">Recipient Contact Information</label>
+                        <textarea class="input-field" name="recipientContact" rows="3" placeholder="Phone, email, fax, or address" required></textarea>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION III — Disclosure Details</h3>
+
+                    <div class="input-group">
+                        <label class="input-label required-field">Reason for Disclosure</label>
+                        <textarea class="input-field" name="disclosureReason" rows="3" required></textarea>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label required-field">Health Information to Be Disclosed</label>
+                        <textarea class="input-field" name="healthInfoToDisclose" rows="3" required></textarea>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Release Start Date (mm/dd/yyyy)</label>
+                            <input type="date" class="input-field" name="releaseStartDate">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Release End Date (mm/dd/yyyy)</label>
+                            <input type="date" class="input-field" name="releaseEndDate">
+                        </div>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION IV — Expiration & Signatures</h3>
+
+                    <div class="input-group">
+                        <label class="input-label">Expiration Date or Event</label>
+                        <input type="text" class="input-field" name="expirationDateOrEvent" placeholder="e.g., Specific date or event">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label required-field">Method of Delivery</label>
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="radio" name="deliveryMethod" value="Paper" id="delivery1" required>
+                                <label for="delivery1">Paper</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="deliveryMethod" value="Fax" id="delivery2">
+                                <label for="delivery2">Fax</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="deliveryMethod" value="Electronic" id="delivery3">
+                                <label for="delivery3">Electronic</label>
+                            </div>
+                        </div>
+                        <div class="error-text">Please select a delivery method</div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Individual Signature</label>
+                            <div class="signature-area" id="roiIndividualSignatureArea">
+                                <canvas id="roiIndividualCanvas"></canvas>
+                                <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="roiIndividualSignatureText" style="margin-top: 10px;">
+                            </div>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('roiIndividual')" style="margin-top: 10px;">Clear Signature</button>
+                            <div class="error-text">Signature is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Date Signed</label>
+                            <input type="date" class="input-field" name="roiSignatureDate" required>
+                            <div class="error-text">Date is required</div>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Personal Representative Signature</label>
+                            <div class="signature-area" id="roiRepresentativeSignatureArea">
+                                <canvas id="roiRepresentativeCanvas"></canvas>
+                                <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="roiRepresentativeSignatureText" style="margin-top: 10px;">
+                            </div>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('roiRepresentative')" style="margin-top: 10px;">Clear Signature</button>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Representative Date</label>
+                            <input type="date" class="input-field" name="roiRepresentativeDate">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Representative Relationship</label>
+                        <select class="input-field" name="representativeRelationship">
+                            <option value="">Select Relationship</option>
+                            <option value="Parent">Parent</option>
+                            <option value="Legal Guardian">Legal Guardian</option>
+                            <option value="Healthcare Power of Attorney">Healthcare Power of Attorney</option>
+                            <option value="Executor/Administrator">Executor/Administrator</option>
+                            <option value="Other">Other</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ODM Standard Authorization Form - Form B -->
+                <div class="form-section-block" id="section15">
+                    <div class="section-header">XV. FORM B — Consent for Release of Substance Use Disorder (Part 2 Program) Information</div>
+                    <div class="info-panel">
+                        <h4>Consent for Release of Substance Use Disorder Information</h4>
+                        <p>This form provides consent for the release of protected substance use disorder information in accordance with 42 CFR Part 2 regulations.</p>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION I — Client Information</h3>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">First Name</label>
+                            <input type="text" class="input-field" name="sudFirstName" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">MI</label>
+                            <input type="text" class="input-field" name="sudMiddleInitial" maxlength="1">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Last Name</label>
+                            <input type="text" class="input-field" name="sudLastName" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Date of Birth</label>
+                            <input type="date" class="input-field" name="sudDOB" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Social Security Number</label>
+                            <input type="text" class="input-field" name="sudSSN" placeholder="XXX-XX-XXXX" maxlength="11" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Address</label>
+                        <input type="text" class="input-field" name="sudAddress">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">City</label>
+                            <input type="text" class="input-field" name="sudCity">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">State</label>
+                            <input type="text" class="input-field" name="sudState" value="OH">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">ZIP Code</label>
+                            <input type="text" class="input-field" name="sudZip" maxlength="5">
+                        </div>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION II — Disclosing Entity & Recipient Type</h3>
+
+                    <div class="input-group">
+                        <label class="input-label required-field">Disclosing Entity (Part 2 Program) Name</label>
+                        <input type="text" class="input-field" name="sudDisclosingEntityName" required>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Entity Telephone Number</label>
+                            <input type="tel" class="input-field" name="sudDisclosingEntityPhone" placeholder="(XXX) XXX-XXXX">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Entity Address</label>
+                            <input type="text" class="input-field" name="sudDisclosingEntityAddress">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Entity City</label>
+                            <input type="text" class="input-field" name="sudDisclosingEntityCity">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Entity State</label>
+                            <input type="text" class="input-field" name="sudDisclosingEntityState" value="OH">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Entity ZIP</label>
+                            <input type="text" class="input-field" name="sudDisclosingEntityZip" maxlength="5">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label required-field">Recipient Type</label>
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="radio" name="recipientType" value="Named Individual" id="recipientType1" required>
+                                <label for="recipientType1">Named Individual</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="recipientType" value="Named Third Party Payer" id="recipientType2">
+                                <label for="recipientType2">Named Third Party Payer</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="recipientType" value="Named Treatment Provider Entity" id="recipientType3">
+                                <label for="recipientType3">Named Treatment Provider Entity</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="recipientType" value="Named Non-Treatment Provider" id="recipientType4">
+                                <label for="recipientType4">Named Non-Treatment Provider</label>
+                            </div>
+                        </div>
+                        <div class="error-text">Please select a recipient type</div>
+                    </div>
+
+                    <div class="input-group" id="namedIndividualSection" style="display: none;">
+                        <label class="input-label">Named Individual Participant(s)</label>
+                        <textarea class="input-field" name="namedIndividuals" rows="3" placeholder="List individual names"></textarea>
+                    </div>
+
+                    <div class="input-group" id="namedTreatmentProviderSection" style="display: none;">
+                        <label class="input-label">Named Treatment Provider Entity Participants</label>
+                        <textarea class="input-field" name="namedTreatmentProviders" rows="3" placeholder="List treatment provider entities"></textarea>
+                    </div>
+
+                    <div class="input-group" id="providerClassSection" style="display: none;">
+                        <label class="input-label">Description of Group or Class of Provider Participants</label>
+                        <textarea class="input-field" name="providerClassDescription" rows="3" placeholder="Describe the group or class of providers"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Recipient Contact Information</label>
+                        <textarea class="input-field" name="sudRecipientContact" rows="3" placeholder="Phone / Email / Fax / Address"></textarea>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION III — Disclosure Details</h3>
+
+                    <div class="input-group">
+                        <label class="input-label required-field">Reason for Disclosure</label>
+                        <textarea class="input-field" name="sudDisclosureReason" rows="3" required></textarea>
+                        <div class="error-text">This field is required</div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label required-field">Health Information to Be Disclosed</label>
+                        <textarea class="input-field" name="sudHealthInfoToDisclose" rows="3" required></textarea>
+                        <div class="error-text">This field is required</div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Release Start Date (mm/dd/yyyy)</label>
+                            <input type="date" class="input-field" name="sudReleaseStartDate">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Release End Date (mm/dd/yyyy)</label>
+                            <input type="date" class="input-field" name="sudReleaseEndDate">
+                        </div>
+                    </div>
+
+                    <h3 style="color: #2c3e50; font-size: 1.4rem; margin: 30px 0 20px 0; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">SECTION IV — Expiration & Signature</h3>
+
+                    <div class="input-group">
+                        <label class="input-label">Expiration Date or Event</label>
+                        <input type="text" class="input-field" name="sudExpirationDateOrEvent" placeholder="e.g., Specific date or event">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Method of Delivery</label>
+                        <div class="options-grid">
+                            <div class="option-box">
+                                <input type="radio" name="sudDeliveryMethod" value="Paper" id="sudDelivery1">
+                                <label for="sudDelivery1">Paper</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="sudDeliveryMethod" value="Fax" id="sudDelivery2">
+                                <label for="sudDelivery2">Fax</label>
+                            </div>
+                            <div class="option-box">
+                                <input type="radio" name="sudDeliveryMethod" value="Electronic" id="sudDelivery3">
+                                <label for="sudDelivery3">Electronic</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Individual Signature</label>
+                            <div class="signature-area" id="sudIndividualSignatureArea">
+                                <canvas id="sudIndividualCanvas"></canvas>
+                                <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="sudIndividualSignatureText" style="margin-top: 10px;">
+                            </div>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('sudIndividual')" style="margin-top: 10px;">Clear Signature</button>
+                            <div class="error-text">Signature is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Date</label>
+                            <input type="date" class="input-field" name="sudSignatureDate" required>
+                            <div class="error-text">Date is required</div>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Personal Representative Signature</label>
+                            <div class="signature-area" id="sudRepresentativeSignatureArea">
+                                <canvas id="sudRepresentativeCanvas"></canvas>
+                                <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="sudRepresentativeSignatureText" style="margin-top: 10px;">
+                            </div>
+                            <button type="button" class="btn btn-outline" onclick="clearSignature('sudRepresentative')" style="margin-top: 10px;">Clear Signature</button>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Date</label>
+                            <input type="date" class="input-field" name="sudRepresentativeDate">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Representative Relationship</label>
+                        <select class="input-field" name="sudRepresentativeRelationship">
+                            <option value="">Select Relationship</option>
+                            <option value="Parent">Parent</option>
+                            <option value="Legal Guardian">Legal Guardian</option>
+                            <option value="Healthcare Power of Attorney">Healthcare Power of Attorney</option>
+                            <option value="Executor/Administrator">Executor/Administrator</option>
+                            <option value="Other">Other</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Client Orientation Checklist 2025 -->
+                <div class="form-section-block" id="section16">
+                    <div class="section-header">XVI. Client Orientation Checklist 2025</div>
+                    <div class="info-panel">
+                        <h4>Client Orientation Checklist</h4>
+                        <p>This checklist ensures all clients receive comprehensive orientation to Toledo Ark's programs, policies, and procedures. Each item must be reviewed and initialed by both client and staff.</p>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label required-field">Client Name</label>
+                            <input type="text" class="input-field" name="orientationClientName" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label required-field">Date</label>
+                            <input type="date" class="input-field" name="orientationDate" required>
+                            <div class="error-text">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <h3 style="color: #2c3e50; font-size: 1.4rem; margin-bottom: 20px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">Orientation Items</h3>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="hoursOfOperation" id="orientation1">
+                                <label for="orientation1" style="font-weight: 600; margin-right: 20px;">Hours of operation</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="hoursOfOperationInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="hoursOfOperationStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="organizationalEthics" id="orientation2">
+                                <label for="orientation2" style="font-weight: 600; margin-right: 20px;">Organizational Ethics Statement</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="organizationalEthicsInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="organizationalEthicsStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="rulesRegulations" id="orientation3">
+                                <label for="orientation3" style="font-weight: 600; margin-right: 20px;">Rules, Regulations, and Expectations</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="rulesRegulationsInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="rulesRegulationsStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="clientRights" id="orientation4">
+                                <label for="orientation4" style="font-weight: 600; margin-right: 20px;">Client rights & responsibilities</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="clientRightsInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="clientRightsStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="financialObligations" id="orientation5">
+                                <label for="orientation5" style="font-weight: 600; margin-right: 20px;">Financial obligations / arrangements / fees</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="financialObligationsInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="financialObligationsStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="complaintProcedures" id="orientation6">
+                                <label for="orientation6" style="font-weight: 600; margin-right: 20px;">Complaint, grievance, and appeal procedures</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="complaintProceduresInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="complaintProceduresStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="familyInvolvement" id="orientation7">
+                                <label for="orientation7" style="font-weight: 600; margin-right: 20px;">Expectations for family involvement</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="familyInvolvementInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="familyInvolvementStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="afterHoursServices" id="orientation8">
+                                <label for="orientation8" style="font-weight: 600; margin-right: 20px;">Access to after-hours services</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="afterHoursServicesInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="afterHoursServicesStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="serviceCoordinator" id="orientation9">
+                                <label for="orientation9" style="font-weight: 600; margin-right: 20px;">Identification of service coordinator</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="serviceCoordinatorInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="serviceCoordinatorStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="clientInput" id="orientation10">
+                                <label for="orientation10" style="font-weight: 600; margin-right: 20px;">Ways client gives input re: quality, outcomes, satisfaction</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="clientInputInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="clientInputStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="programRules" id="orientation11">
+                                <label for="orientation11" style="font-weight: 600; margin-right: 20px;">Copy of program rules (restrictions, consequences, regaining privileges)</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="programRulesInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="programRulesStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="confidentiality" id="orientation12">
+                                <label for="orientation12" style="font-weight: 600; margin-right: 20px;">Confidentiality policies</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="confidentialityInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="confidentialityStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="sudConfidentiality" id="orientation13">
+                                <label for="orientation13" style="font-weight: 600; margin-right: 20px;">Federal SUD Confidentiality Law — 42 CFR Part 2</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="sudConfidentialityInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="sudConfidentialityStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="siteOrientation" id="orientation14">
+                                <label for="orientation14" style="font-weight: 600; margin-right: 20px;">Site & safety orientation (exits, emergency equipment, etc.)</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="siteOrientationInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="siteOrientationStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="tobaccoPolicy" id="orientation15">
+                                <label for="orientation15" style="font-weight: 600; margin-right: 20px;">Use of tobacco products</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="tobaccoPolicyInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="tobaccoPolicyStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="assessmentProcess" id="orientation16">
+                                <label for="orientation16" style="font-weight: 600; margin-right: 20px;">Purpose & process of assessment</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="assessmentProcessInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="assessmentProcessStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="treatmentPlan" id="orientation17">
+                                <label for="orientation17" style="font-weight: 600; margin-right: 20px;">How Individual Plan is developed & client involvement</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="treatmentPlanInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="treatmentPlanStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="courseOfTreatment" id="orientation18">
+                                <label for="orientation18" style="font-weight: 600; margin-right: 20px;">Course of treatment / services</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="courseOfTreatmentInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="courseOfTreatmentStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="aftercareProcedures" id="orientation19">
+                                <label for="orientation19" style="font-weight: 600; margin-right: 20px;">Aftercare, transition, discharge criteria & procedures</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="aftercareProceduresInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="aftercareProceduresStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="riskResponse" id="orientation20">
+                                <label for="orientation20" style="font-weight: 600; margin-right: 20px;">Response to identified risks</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="riskResponseInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="riskResponseStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="seclusionRestraint" id="orientation21">
+                                <label for="orientation21" style="font-weight: 600; margin-right: 20px;">Policy on seclusion & restraint</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="seclusionRestraintInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="seclusionRestraintStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="infectiousDisease" id="orientation22">
+                                <label for="orientation22" style="font-weight: 600; margin-right: 20px;">Infectious disease education (HIV, Hep B/C, TB, universal precautions)</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="infectiousDiseaseInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="infectiousDiseaseStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="advanceDirectives" id="orientation23">
+                                <label for="orientation23" style="font-weight: 600; margin-right: 20px;">Education on Advanced Directives</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="advanceDirectivesInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="advanceDirectivesStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="medicationPolicy" id="orientation24">
+                                <label for="orientation24" style="font-weight: 600; margin-right: 20px;">Policy regarding illegal/legal/prescription medications brought in</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="medicationPolicyInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="medicationPolicyStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="weaponsPolicy" id="orientation25">
+                                <label for="orientation25" style="font-weight: 600; margin-right: 20px;">Policy regarding weapons brought in</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="weaponsPolicyInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="weaponsPolicyStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="legalAppointments" id="orientation26">
+                                <label for="orientation26" style="font-weight: 600; margin-right: 20px;">Expectations about required legal appointments or sanctions</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="legalAppointmentsInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="legalAppointmentsStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="therapeuticInterventions" id="orientation27">
+                                <label for="orientation27" style="font-weight: 600; margin-right: 20px;">Identification of therapeutic interventions / sanctions / incentives</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="therapeuticInterventionsInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="therapeuticInterventionsStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="intentToTreat" id="orientation28">
+                                <label for="orientation28" style="font-weight: 600; margin-right: 20px;">Intent / Consent to Treat</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="intentToTreatInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="intentToTreatStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="behavioralExpectations" id="orientation29">
+                                <label for="orientation29" style="font-weight: 600; margin-right: 20px;">Behavioral expectations</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="behavioralExpectationsInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="behavioralExpectationsStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="professionalConduct" id="orientation30">
+                                <label for="orientation30" style="font-weight: 600; margin-right: 20px;">Standards of professional conduct</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="professionalConductInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="professionalConductStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <div class="option-box" style="width: 100%; padding: 15px; margin: 5px 0;">
+                                <input type="checkbox" name="orientationItems" value="mandatedReporting" id="orientation31">
+                                <label for="orientation31" style="font-weight: 600; margin-right: 20px;">Requirements for mandated reporting / follow-up</label>
+                                <span style="margin-left: auto;">Client Initials: <input type="text" class="input-field" name="mandatedReportingInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                                <span style="margin-left: 20px;">Staff Initials: <input type="text" class="input-field" name="mandatedReportingStaffInitials" style="width: 80px; display: inline-block; margin-left: 10px;" maxlength="3"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px; border-top: 2px solid #4CAF50; padding-top: 20px;">
+                        <h3 style="color: #2c3e50; font-size: 1.4rem; margin-bottom: 20px;">Signatures</h3>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="input-label required-field">Client Signature</label>
+                                <div class="signature-area" id="orientationClientSignatureArea">
+                                    <canvas id="orientationClientCanvas"></canvas>
+                                    <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="orientationClientSignatureText" style="margin-top: 10px;">
+                                </div>
+                                <button type="button" class="btn btn-outline" onclick="clearSignature('orientationClient')" style="margin-top: 10px;">Clear Signature</button>
+                                <div class="error-text">Signature is required</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label required-field">Client Signature Date</label>
+                                <input type="date" class="input-field" name="orientationClientSignatureDate" required>
+                                <div class="error-text">Date is required</div>
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="input-label required-field">Staff Signature</label>
+                                <div class="signature-area" id="orientationStaffSignatureArea">
+                                    <canvas id="orientationStaffCanvas"></canvas>
+                                    <input type="text" class="input-field" placeholder="Type your name here (alternative to drawing)" id="orientationStaffSignatureText" style="margin-top: 10px;">
+                                </div>
+                                <button type="button" class="btn btn-outline" onclick="clearSignature('orientationStaff')" style="margin-top: 10px;">Clear Signature</button>
+                                <div class="error-text">Signature is required</div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label required-field">Staff Signature Date</label>
+                                <input type="date" class="input-field" name="orientationStaffSignatureDate" required>
+                                <div class="error-text">Date is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="navigation-footer">
@@ -1440,8 +2398,8 @@
 
     <script>
         let currentSection = 1;
-        const totalSections = 13;
-        let parentSignaturePad, youthSignaturePad;
+        const totalSections = 16;
+        let parentSignaturePad, youthSignaturePad, roiIndividualSignaturePad, roiRepresentativeSignaturePad, sudIndividualSignaturePad, sudRepresentativeSignaturePad, orientationClientSignaturePad, orientationStaffSignaturePad;
         let formData = {};
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -1451,6 +2409,7 @@
             setupPhoneFormatting();
             setupSSNFormatting();
             setupCheckboxAnimations();
+            setupRecipientTypeToggle();
             const today = new Date().toISOString().split('T')[0];
             document.querySelector('input[name="signatureDate"]').value = today;
         });
@@ -1458,39 +2417,71 @@
         function initializeSignaturePads() {
             const parentCanvas = document.getElementById('parentCanvas');
             const youthCanvas = document.getElementById('youthCanvas');
+            const roiIndividualCanvas = document.getElementById('roiIndividualCanvas');
+            const roiRepresentativeCanvas = document.getElementById('roiRepresentativeCanvas');
+            const sudIndividualCanvas = document.getElementById('sudIndividualCanvas');
+            const sudRepresentativeCanvas = document.getElementById('sudRepresentativeCanvas');
+            const orientationClientCanvas = document.getElementById('orientationClientCanvas');
+            const orientationStaffCanvas = document.getElementById('orientationStaffCanvas');
 
-            parentCanvas.width = 300;
-            parentCanvas.height = 220;
-            youthCanvas.width = 300;
-            youthCanvas.height = 220;
+            // Set canvas dimensions
+            [parentCanvas, youthCanvas, roiIndividualCanvas, roiRepresentativeCanvas, sudIndividualCanvas, sudRepresentativeCanvas, orientationClientCanvas, orientationStaffCanvas].forEach(canvas => {
+                if (canvas) {
+                    canvas.width = 300;
+                    canvas.height = 220;
+                }
+            });
 
+            // Initialize signature pads
             parentSignaturePad = new SignaturePad(parentCanvas);
             youthSignaturePad = new SignaturePad(youthCanvas);
+            roiIndividualSignaturePad = new SignaturePad(roiIndividualCanvas);
+            roiRepresentativeSignaturePad = new SignaturePad(roiRepresentativeCanvas);
+            sudIndividualSignaturePad = new SignaturePad(sudIndividualCanvas);
+            sudRepresentativeSignaturePad = new SignaturePad(sudRepresentativeCanvas);
+            orientationClientSignaturePad = new SignaturePad(orientationClientCanvas);
+            orientationStaffSignaturePad = new SignaturePad(orientationStaffCanvas);
 
             window.addEventListener('resize', resizeCanvases);
         }
 
         function resizeCanvases() {
-            const parentCanvas = document.getElementById('parentCanvas');
-            const youthCanvas = document.getElementById('youthCanvas');
+            const canvases = [
+                { canvas: document.getElementById('parentCanvas'), pad: parentSignaturePad },
+                { canvas: document.getElementById('youthCanvas'), pad: youthSignaturePad },
+                { canvas: document.getElementById('roiIndividualCanvas'), pad: roiIndividualSignaturePad },
+                { canvas: document.getElementById('roiRepresentativeCanvas'), pad: roiRepresentativeSignaturePad },
+                { canvas: document.getElementById('sudIndividualCanvas'), pad: sudIndividualSignaturePad },
+                { canvas: document.getElementById('sudRepresentativeCanvas'), pad: sudRepresentativeSignaturePad },
+                { canvas: document.getElementById('orientationClientCanvas'), pad: orientationClientSignaturePad },
+                { canvas: document.getElementById('orientationStaffCanvas'), pad: orientationStaffSignaturePad }
+            ];
 
-            const parentData = parentSignaturePad.toData();
-            const youthData = youthSignaturePad.toData();
-
-            parentCanvas.width = parentCanvas.parentElement.clientWidth;
-            youthCanvas.width = youthCanvas.parentElement.clientWidth;
-
-            parentSignaturePad.fromData(parentData);
-            youthSignaturePad.fromData(youthData);
+            canvases.forEach(({ canvas, pad }) => {
+                if (canvas && pad) {
+                    const data = pad.toData();
+                    canvas.width = canvas.parentElement.clientWidth;
+                    pad.fromData(data);
+                }
+            });
         }
 
         function clearSignature(type) {
-            if (type === 'parent') {
-                parentSignaturePad.clear();
-                document.getElementById('parentSignatureText').value = '';
-            } else {
-                youthSignaturePad.clear();
-                document.getElementById('youthSignatureText').value = '';
+            const signatureMap = {
+                'parent': { pad: parentSignaturePad, textId: 'parentSignatureText' },
+                'youth': { pad: youthSignaturePad, textId: 'youthSignatureText' },
+                'roiIndividual': { pad: roiIndividualSignaturePad, textId: 'roiIndividualSignatureText' },
+                'roiRepresentative': { pad: roiRepresentativeSignaturePad, textId: 'roiRepresentativeSignatureText' },
+                'sudIndividual': { pad: sudIndividualSignaturePad, textId: 'sudIndividualSignatureText' },
+                'sudRepresentative': { pad: sudRepresentativeSignaturePad, textId: 'sudRepresentativeSignatureText' },
+                'orientationClient': { pad: orientationClientSignaturePad, textId: 'orientationClientSignatureText' },
+                'orientationStaff': { pad: orientationStaffSignaturePad, textId: 'orientationStaffSignatureText' }
+            };
+
+            const signature = signatureMap[type];
+            if (signature) {
+                signature.pad.clear();
+                document.getElementById(signature.textId).value = '';
             }
         }
 
@@ -1552,6 +2543,31 @@
             });
         }
 
+        function setupRecipientTypeToggle() {
+            const recipientTypeRadios = document.querySelectorAll('input[name="recipientType"]');
+            recipientTypeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const namedIndividualSection = document.getElementById('namedIndividualSection');
+                    const namedTreatmentProviderSection = document.getElementById('namedTreatmentProviderSection');
+                    const providerClassSection = document.getElementById('providerClassSection');
+
+                    // Hide all conditional sections first
+                    namedIndividualSection.style.display = 'none';
+                    namedTreatmentProviderSection.style.display = 'none';
+                    providerClassSection.style.display = 'none';
+
+                    // Show the relevant section based on selection
+                    if (this.value === 'Named Individual') {
+                        namedIndividualSection.style.display = 'block';
+                    } else if (this.value === 'Named Treatment Provider Entity') {
+                        namedTreatmentProviderSection.style.display = 'block';
+                    } else if (this.value === 'Named Non-Treatment Provider') {
+                        providerClassSection.style.display = 'block';
+                    }
+                });
+            });
+        }
+
         function nextSection() {
             if (validateCurrentSection()) {
                 if (currentSection < totalSections) {
@@ -1560,7 +2576,7 @@
                     document.getElementById(`section${currentSection}`).classList.add('active');
                     updateProgress();
                     updateNavigation();
-                    if (currentSection === 13) resizeCanvases();
+                    if (currentSection >= 13 && currentSection <= 16) resizeCanvases();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
@@ -1595,7 +2611,10 @@
                 'Emergency Policy',
                 'Client Rights',
                 'Privacy',
-                'Signatures'
+                'Signatures',
+                'ODM Form A - ROI',
+                'ODM Form B - SUD',
+                'Orientation Checklist'
             ];
             document.getElementById('sectionName').textContent = titles[currentSection - 1];
         }
@@ -1669,6 +2688,44 @@
                     isValid = false;
                 } else {
                     const errorMsg = document.querySelector('#parentSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.remove('show');
+                }
+            } else if (currentSection === 14) {
+                // Form A - ROI validation
+                if (roiIndividualSignaturePad.isEmpty() && !document.getElementById('roiIndividualSignatureText').value.trim()) {
+                    const errorMsg = document.querySelector('#roiIndividualSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.add('show');
+                    isValid = false;
+                } else {
+                    const errorMsg = document.querySelector('#roiIndividualSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.remove('show');
+                }
+            } else if (currentSection === 15) {
+                // Form B - SUD validation
+                if (sudIndividualSignaturePad.isEmpty() && !document.getElementById('sudIndividualSignatureText').value.trim()) {
+                    const errorMsg = document.querySelector('#sudIndividualSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.add('show');
+                    isValid = false;
+                } else {
+                    const errorMsg = document.querySelector('#sudIndividualSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.remove('show');
+                }
+            } else if (currentSection === 16) {
+                // Orientation Checklist validation
+                if (orientationClientSignaturePad.isEmpty() && !document.getElementById('orientationClientSignatureText').value.trim()) {
+                    const errorMsg = document.querySelector('#orientationClientSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.add('show');
+                    isValid = false;
+                } else {
+                    const errorMsg = document.querySelector('#orientationClientSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.remove('show');
+                }
+                if (orientationStaffSignaturePad.isEmpty() && !document.getElementById('orientationStaffSignatureText').value.trim()) {
+                    const errorMsg = document.querySelector('#orientationStaffSignatureArea').parentElement.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.add('show');
+                    isValid = false;
+                } else {
+                    const errorMsg = document.querySelector('#orientationStaffSignatureArea').parentElement.querySelector('.error-text');
                     if (errorMsg) errorMsg.classList.remove('show');
                 }
             }
@@ -1747,6 +2804,19 @@
 
             formData.parentSignature = parentSignaturePad.isEmpty() ? document.getElementById('parentSignatureText').value.trim() : parentSignaturePad.toDataURL();
             formData.youthSignature = youthSignaturePad.isEmpty() ? document.getElementById('youthSignatureText').value.trim() : youthSignaturePad.toDataURL();
+
+            // ODM Form A - ROI data
+            formData.roiIndividualSignature = roiIndividualSignaturePad.isEmpty() ? document.getElementById('roiIndividualSignatureText').value.trim() : roiIndividualSignaturePad.toDataURL();
+            formData.roiRepresentativeSignature = roiRepresentativeSignaturePad.isEmpty() ? document.getElementById('roiRepresentativeSignatureText').value.trim() : roiRepresentativeSignaturePad.toDataURL();
+
+            // ODM Form B - SUD data
+            formData.sudIndividualSignature = sudIndividualSignaturePad.isEmpty() ? document.getElementById('sudIndividualSignatureText').value.trim() : sudIndividualSignaturePad.toDataURL();
+            formData.sudRepresentativeSignature = sudRepresentativeSignaturePad.isEmpty() ? document.getElementById('sudRepresentativeSignatureText').value.trim() : sudRepresentativeSignaturePad.toDataURL();
+
+            // Orientation Checklist data
+            formData.orientationClientSignature = orientationClientSignaturePad.isEmpty() ? document.getElementById('orientationClientSignatureText').value.trim() : orientationClientSignaturePad.toDataURL();
+            formData.orientationStaffSignature = orientationStaffSignaturePad.isEmpty() ? document.getElementById('orientationStaffSignatureText').value.trim() : orientationStaffSignaturePad.toDataURL();
+
             formData.submittedAt = new Date().toISOString();
         }
 
@@ -1915,12 +2985,148 @@
 
             const screeningResults = [
                 ['PHQ-9 Depression Score:', `${phqScore}/27 - ${phqLevel}`],
-                ['GAD-7 Anxiety Score:', `${gadScore}/21 - ${gadLevel}`]
+                ['PHQ-9 Difficulty Impact:', formData.phqDifficulty || 'N/A'],
+                ['GAD-7 Anxiety Score:', `${gadScore}/21 - ${gadLevel}`],
+                ['GAD-7 Difficulty Impact:', formData.gadDifficulty || 'N/A']
             ];
 
             doc.autoTable({
                 startY: yPos,
                 body: screeningResults,
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 70, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                }
+            });
+
+            yPos = doc.lastAutoTable.finalY + 12;
+
+            if (yPos > 230) {
+                doc.addPage();
+                yPos = 20;
+            }
+
+            // ODM Form A - ROI Section
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.setFont(undefined, 'bold');
+            doc.text('XIV. ODM Standard Authorization Form (ROI) — Form A', 15, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont(undefined, 'normal');
+
+            const roiInfo = [
+                ['Client Name:', `${formData.roiFirstName || 'N/A'} ${formData.roiMiddleInitial || ''} ${formData.roiLastName || 'N/A'}`],
+                ['Date of Birth:', formData.roiDOB || 'N/A'],
+                ['SSN:', formData.roiSSN || 'N/A'],
+                ['Address:', `${formData.roiAddress || 'N/A'}, ${formData.roiCity || 'N/A'}, ${formData.roiState || 'N/A'} ${formData.roiZip || 'N/A'}`],
+                ['Disclosing Entity:', formData.disclosingEntityName || 'N/A'],
+                ['Recipient:', formData.recipientName || 'N/A'],
+                ['Reason for Disclosure:', doc.splitTextToSize(formData.disclosureReason || 'N/A', 130)],
+                ['Health Info to Disclose:', doc.splitTextToSize(formData.healthInfoToDisclose || 'N/A', 130)],
+                ['Delivery Method:', formData.deliveryMethod || 'N/A']
+            ];
+
+            doc.autoTable({
+                startY: yPos,
+                body: roiInfo,
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 50, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                }
+            });
+
+            yPos = doc.lastAutoTable.finalY + 12;
+
+            if (yPos > 230) {
+                doc.addPage();
+                yPos = 20;
+            }
+
+            // ODM Form B - SUD Section
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.setFont(undefined, 'bold');
+            doc.text('XV. FORM B — Consent for Release of Substance Use Disorder Information', 15, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont(undefined, 'normal');
+
+            const sudInfo = [
+                ['Client Name:', `${formData.sudFirstName || 'N/A'} ${formData.sudMiddleInitial || ''} ${formData.sudLastName || 'N/A'}`],
+                ['Date of Birth:', formData.sudDOB || 'N/A'],
+                ['SSN:', formData.sudSSN || 'N/A'],
+                ['Address:', `${formData.sudAddress || 'N/A'}, ${formData.sudCity || 'N/A'}, ${formData.sudState || 'N/A'} ${formData.sudZip || 'N/A'}`],
+                ['Disclosing Entity:', formData.sudDisclosingEntityName || 'N/A'],
+                ['Recipient Type:', formData.recipientType || 'N/A'],
+                ['Reason for Disclosure:', doc.splitTextToSize(formData.sudDisclosureReason || 'N/A', 130)],
+                ['Health Info to Disclose:', doc.splitTextToSize(formData.sudHealthInfoToDisclose || 'N/A', 130)],
+                ['Delivery Method:', formData.sudDeliveryMethod || 'N/A']
+            ];
+
+            doc.autoTable({
+                startY: yPos,
+                body: sudInfo,
+                theme: 'striped',
+                styles: { fontSize: 9, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 50, fontStyle: 'bold', fillColor: [230, 245, 230] },
+                    1: { cellWidth: 'auto' }
+                }
+            });
+
+            yPos = doc.lastAutoTable.finalY + 12;
+
+            if (yPos > 230) {
+                doc.addPage();
+                yPos = 20;
+            }
+
+            // Client Orientation Checklist Section
+            doc.setFontSize(14);
+            doc.setTextColor(76, 175, 80);
+            doc.setFont(undefined, 'bold');
+            doc.text('XVI. Client Orientation Checklist 2025', 15, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont(undefined, 'normal');
+
+            const orientationInfo = [
+                ['Client Name:', formData.orientationClientName || 'N/A'],
+                ['Date:', formData.orientationDate || 'N/A']
+            ];
+
+            // Add orientation checklist items
+            const orientationItems = [
+                'hoursOfOperation', 'organizationalEthics', 'rulesRegulations', 'clientRights', 'financialObligations',
+                'complaintProcedures', 'familyInvolvement', 'afterHoursServices', 'serviceCoordinator', 'clientInput',
+                'programRules', 'confidentiality', 'sudConfidentiality', 'siteOrientation', 'tobaccoPolicy',
+                'assessmentProcess', 'treatmentPlan', 'courseOfTreatment', 'aftercareProcedures', 'riskResponse',
+                'seclusionRestraint', 'infectiousDisease', 'advanceDirectives', 'medicationPolicy', 'weaponsPolicy',
+                'legalAppointments', 'therapeuticInterventions', 'intentToTreat', 'behavioralExpectations',
+                'professionalConduct', 'mandatedReporting'
+            ];
+
+            orientationItems.forEach(item => {
+                if (formData.orientationItems && formData.orientationItems.includes(item)) {
+                    const itemName = item.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                    orientationInfo.push([itemName + ':', '✓ Completed']);
+                }
+            });
+
+            doc.autoTable({
+                startY: yPos,
+                body: orientationInfo,
                 theme: 'striped',
                 styles: { fontSize: 9, cellPadding: 3 },
                 columnStyles: {
