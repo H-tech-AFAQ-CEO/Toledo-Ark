@@ -533,6 +533,47 @@
             font-size: 1rem;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
         @media (max-width: 768px) {
             .logo-title {
                 font-size: 2rem;
@@ -589,6 +630,12 @@
             .options-grid {
                 grid-template-columns: 1fr;
             }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                max-height: 90vh;
+            }
         }
     </style>
 </head>
@@ -600,67 +647,72 @@
             <div class="subtitle-text">Youth Behavioral Health Services - Day Treatment Program</div>
         </div>
 
-        <!-- Welcome Introduction Section -->
-        <div class="welcome-section">
-            <div class="welcome-content">
-                <h1 class="welcome-title">WELCOME, LET US INTRODUCE OURSELVES!!!</h1>
+        <!-- Welcome Modal -->
+        <div id="welcomeModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="welcome-section">
+                    <div class="welcome-content">
+                        <h1 class="welcome-title">WELCOME, LET US INTRODUCE OURSELVES!!!</h1>
 
-                <div class="mission-section">
-                    <h2 class="section-title">🌱 Mission Statement</h2>
-                    <h3 class="mission-subtitle">Helping Children Thrive In Childhood—Mind, Body, and Spirit</h3>
-                    <p class="mission-text">
-                        At Toledo Ark Behavioral Health, our mission is to provide a safe, nurturing, and empowering environment where youth ages 6–17 can thrive. We are committed to strengthening the whole child—through mentorship, recreation, competitive training, and a strong concentration on mental health and emotional well-being. Our licensed professionals and mentors guide children in building resilience, confidence, and self-worth, ensuring they not only survive life's challenges but develop the inner tools to grow into healthy, grounded adults.
-                    </p>
-                </div>
-
-                <div class="program-section">
-                    <h2 class="section-title">🧠 Program Description</h2>
-                    <p class="program-intro">
-                        Toledo Ark's programs are designed to nurture both mental wellness and personal growth, integrating behavioral health services into every aspect of recreation and mentorship.
-                    </p>
-
-                    <div class="program-details">
-                        <div class="program-item">
-                            <h4>• Mental Health & Wellness Programs</h4>
-                            <p>Our licensed social workers and therapists provide individual and group sessions, trauma-informed care, and behavioral health activities. We create safe spaces for children to explore their emotions, practice coping skills, and strengthen their mental health alongside their physical development.</p>
+                        <div class="mission-section">
+                            <h2 class="section-title">🌱 Mission Statement</h2>
+                            <h3 class="mission-subtitle">Helping Children Thrive In Childhood—Mind, Body, and Spirit</h3>
+                            <p class="mission-text">
+                                At Toledo Ark Behavioral Health, our mission is to provide a safe, nurturing, and empowering environment where youth ages 6–17 can thrive. We are committed to strengthening the whole child—through mentorship, recreation, competitive training, and a strong concentration on mental health and emotional well-being. Our licensed professionals and mentors guide children in building resilience, confidence, and self-worth, ensuring they not only survive life's challenges but develop the inner tools to grow into healthy, grounded adults.
+                            </p>
                         </div>
 
-                        <div class="program-item">
-                            <h4>• Mentorship & Coaching</h4>
-                            <p>Youth are paired with positive role models who provide situational coaching, emotional support, and guidance in self-advocacy—helping them feel seen, heard, and respected.</p>
-                        </div>
+                        <div class="program-section">
+                            <h2 class="section-title">🧠 Program Description</h2>
+                            <p class="program-intro">
+                                Toledo Ark's programs are designed to nurture both mental wellness and personal growth, integrating behavioral health services into every aspect of recreation and mentorship.
+                            </p>
 
-                        <div class="program-item">
-                            <h4>• Youth Summer & After-School Programs</h4>
-                            <p>Recreational and fitness-based activities are intentionally designed to reduce stress, foster belonging, and provide structured outlets for emotional release.</p>
-                        </div>
+                            <div class="program-details">
+                                <div class="program-item">
+                                    <h4>• Mental Health & Wellness Programs</h4>
+                                    <p>Our licensed social workers and therapists provide individual and group sessions, trauma-informed care, and behavioral health activities. We create safe spaces for children to explore their emotions, practice coping skills, and strengthen their mental health alongside their physical development.</p>
+                                </div>
 
-                        <div class="program-item">
-                            <h4>• Competitive Dance Team (Ages 6–16)</h4>
-                            <p>Dance becomes both artistic expression and emotional release, allowing participants to explore creativity while building resilience, teamwork, and confidence.</p>
-                        </div>
+                                <div class="program-item">
+                                    <h4>• Mentorship & Coaching</h4>
+                                    <p>Youth are paired with positive role models who provide situational coaching, emotional support, and guidance in self-advocacy—helping them feel seen, heard, and respected.</p>
+                                </div>
 
-                        <div class="program-item">
-                            <h4>• Recreation Center & Game Rooms</h4>
-                            <p>A dynamic, safe space for social connection, stress relief, and fun—promoting balance and positive peer relationships that support mental well-being.</p>
-                        </div>
+                                <div class="program-item">
+                                    <h4>• Youth Summer & After-School Programs</h4>
+                                    <p>Recreational and fitness-based activities are intentionally designed to reduce stress, foster belonging, and provide structured outlets for emotional release.</p>
+                                </div>
 
-                        <div class="program-item">
-                            <h4>• Free Transportation & Meals</h4>
-                            <p>We reduce barriers to access by providing reliable transportation and healthy snacks or meals, ensuring that kids are both physically and emotionally supported.</p>
-                        </div>
+                                <div class="program-item">
+                                    <h4>• Competitive Dance Team (Ages 6–16)</h4>
+                                    <p>Dance becomes both artistic expression and emotional release, allowing participants to explore creativity while building resilience, teamwork, and confidence.</p>
+                                </div>
 
-                        <div class="program-item">
-                            <h4>• Community Giving & Outreach</h4>
-                            <p>Our outreach programs are rooted in healing-centered community care, extending mental health awareness and support beyond the center into the wider Toledo community.</p>
-                        </div>
-                    </div>
+                                <div class="program-item">
+                                    <h4>• Recreation Center & Game Rooms</h4>
+                                    <p>A dynamic, safe space for social connection, stress relief, and fun—promoting balance and positive peer relationships that support mental well-being.</p>
+                                </div>
 
-                    <div class="purpose-section">
-                        <h2 class="section-title">📋 Summary of Purpose</h2>
-                        <p class="program-intro">
-                            Toledo Ark is more than a sports and recreation facility—it is a healing-centered youth sanctuary, where physical fitness, creative expression, and strong mental health supports work together to empower children and help them build a foundation of lifelong resilience.
-                        </p>
+                                <div class="program-item">
+                                    <h4>• Free Transportation & Meals</h4>
+                                    <p>We reduce barriers to access by providing reliable transportation and healthy snacks or meals, ensuring that kids are both physically and emotionally supported.</p>
+                                </div>
+
+                                <div class="program-item">
+                                    <h4>• Community Giving & Outreach</h4>
+                                    <p>Our outreach programs are rooted in healing-centered community care, extending mental health awareness and support beyond the center into the wider Toledo community.</p>
+                                </div>
+                            </div>
+
+                            <div class="purpose-section">
+                                <h2 class="section-title">📋 Summary of Purpose</h2>
+                                <p class="program-intro">
+                                    Toledo Ark is more than a sports and recreation facility—it is a healing-centered youth sanctuary, where physical fitness, creative expression, and strong mental health supports work together to empower children and help them build a foundation of lifelong resilience.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2463,6 +2515,21 @@
             setupRecipientTypeToggle();
             const today = new Date().toISOString().split('T')[0];
             document.querySelector('input[name="signatureDate"]').value = today;
+
+            // Show welcome modal on load
+            const modal = document.getElementById('welcomeModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            modal.style.display = 'block';
+
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
         });
 
         function initializeSignaturePads() {
@@ -3245,8 +3312,14 @@
 
             if (formData.parentSignature) {
                 if (formData.parentSignature.startsWith('data:')) {
-                    doc.addImage(formData.parentSignature, 'PNG', 15, yPos + 3, 80, 25);
-                    yPos += 32;
+                    try {
+                        doc.addImage(formData.parentSignature, 'PNG', 15, yPos + 3, 80, 25);
+                        yPos += 32;
+                    } catch (e) {
+                        // If image is corrupt, add as text
+                        doc.text('Parent/Guardian Signature: (Digital signature)', 15, yPos + 3);
+                        yPos += 10;
+                    }
                 } else {
                     doc.text('Parent/Guardian Signature: ' + formData.parentSignature, 15, yPos + 3);
                     yPos += 10;
@@ -3267,7 +3340,12 @@
 
             if (formData.youthSignature) {
                 if (formData.youthSignature.startsWith('data:')) {
-                    doc.addImage(formData.youthSignature, 'PNG', 15, yPos + 3, 80, 25);
+                    try {
+                        doc.addImage(formData.youthSignature, 'PNG', 15, yPos + 3, 80, 25);
+                    } catch (e) {
+                        // If image is corrupt, add as text
+                        doc.text('Youth Signature: (Digital signature)', 15, yPos + 3);
+                    }
                 } else {
                     doc.text('Youth Signature: ' + formData.youthSignature, 15, yPos + 3);
                 }
